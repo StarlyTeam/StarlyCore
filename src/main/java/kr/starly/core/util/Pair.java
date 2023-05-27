@@ -2,7 +2,7 @@ package kr.starly.core.util;
 
 import java.io.Serializable;
 
-public class Pair<F,S> implements Serializable {
+public class Pair<F, S> implements Serializable {
 
     private final F first;
     private final S second;
@@ -12,13 +12,18 @@ public class Pair<F,S> implements Serializable {
         this.second = second;
     }
 
-    public F getFirst() { return first; }
-    public S getSecond() { return second; }
+    public F getFirst() {
+        return first;
+    }
+
+    public S getSecond() {
+        return second;
+    }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Pair<?, ?>) {
-            Pair<?,?> other = (Pair<?,?>) obj;
+            Pair<?, ?> other = (Pair<?, ?>) obj;
             return first.equals(other.first) && second.equals(other.second);
         }
         return false;
@@ -28,7 +33,7 @@ public class Pair<F,S> implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (first == null? 0 : first.hashCode());
+        result = prime * result + (first == null ? 0 : first.hashCode());
         result = prime * result + (second == null ? 0 : second.hashCode());
         return result;
     }

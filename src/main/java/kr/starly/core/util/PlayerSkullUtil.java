@@ -25,8 +25,11 @@ public class PlayerSkullUtil {
     private static boolean highVersion;
     private static Server server;
 
+    /**
+     * 호출 하지 마세요.
+     */
     @Deprecated
-    public static void $initializing(Version version, Server server) {
+    public static void initialize(Version version, Server server) {
         highVersion = version.highVersion;
         PlayerSkullUtil.server = server;
     }

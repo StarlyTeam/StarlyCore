@@ -2,6 +2,7 @@ package kr.starly.core;
 
 import kr.starly.core.bstats.Metrics;
 import kr.starly.core.nms.version.VersionController;
+import kr.starly.core.util.PlayerSkullUtil;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,5 +19,6 @@ public class StarlyCore extends JavaPlugin {
         new Metrics(this, 17172);
 
         VersionController.initialize(this);
+        PlayerSkullUtil.initialize(VersionController.getInstance().getVersion(), getServer());
     }
 }

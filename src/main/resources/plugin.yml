@@ -1,13 +1,11 @@
-name: ST-Core
-main: net.starly.core.StarlyCore
+name: StarlyCore
+main: kr.starly.core.StarlyCore
 author: Starly Team
 website: http://starly.kr/
 
-description: Core Plugin.
+description: StarlyCore Plugin.
 
-version: 1.7.8
+version: 2.0
 api-version: 1.13
 
 commands:
-  st-core:
-    description: 코어 디버깅용 명령어입니다.
