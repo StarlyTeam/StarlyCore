@@ -109,7 +109,7 @@ public class PlayerSkullUtil {
 
         try {
             if (!highVersion) baseItem = new ItemStack(Material.valueOf("SKULL_ITEM"), 1, (byte) 3);
-            else baseItem = new ItemStack(Material.PLAYER_HEAD, 1);
+            else baseItem = new ItemStack(Material.valueOf("PLAYER_HEAD"), 1);
         } catch (Exception ignore) {
             return new ItemStack(Material.STONE);
         }

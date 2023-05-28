@@ -5,7 +5,6 @@ import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -53,11 +52,6 @@ public class ItemBuilder {
                 .map(line -> ChatColor.translateAlternateColorCodes('&', line))
                 .collect(Collectors.toList());
         itemMeta.setLore(coloredLore);
-        return this;
-    }
-
-    public ItemBuilder setDurability(short durability) {
-        ((Damageable) itemMeta).setDamage(itemStack.getType().getMaxDurability() - durability);
         return this;
     }
 
