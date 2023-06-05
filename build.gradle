@@ -44,8 +44,14 @@ publishing {
     }
 
     repositories {
-        maven { url = "http://starly.kr:8083/repository/maven-public/"; allowInsecureProtocol = true }
+        maven {
+            credentials {
+                username "admin"
+                password "843BB7653935EA4C"
+            }
+
+            url = "http://starly.kr:8083/repository/maven-public/"
+            allowInsecureProtocol = true
+        }
     }
 }
-
-//build.dependsOn publishToMavenLocal TODO: 주석 해제

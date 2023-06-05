@@ -33,8 +33,8 @@ public class VersionController {
     }
 
     private Version checkVersions(Server server) throws UnSupportedVersionException {
-        Optional<Version> versionFilter = Stream.of(Version.values()).filter(it -> it.matches(server.getBukkitVersion())).findFirst();
-        if (versionFilter.isPresent()) return versionFilter.get();
+        Optional<Version> matchVersion = Stream.of(Version.values()).filter(it -> it.matches(server.getBukkitVersion())).findFirst();
+        if (matchVersion.isPresent()) return matchVersion.get();
         else throw new UnSupportedVersionException(server.getVersion());
     }
 }
