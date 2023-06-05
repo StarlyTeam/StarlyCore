@@ -37,6 +37,6 @@ public enum Version {
     }
 
     public boolean matches(String version) {
-        return versions.stream().anyMatch(v -> version.contains(v));
+        return versions.stream().anyMatch(version::contains);
     }
 }
