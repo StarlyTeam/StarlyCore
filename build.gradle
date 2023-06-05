@@ -24,24 +24,28 @@ dependencies {
     compileOnly "org.spigotmc:spigot-api:R0.1:1.12.2"
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
 shadowJar {
     archiveFileName = 'StarlyCore.jar'
-    destinationDirectory = file('파일위치')
 }
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            groupId = "kr.starly.core"
+            artifactId = "StarlyCore"
+            version = "${project.version}"
+
             from components.java
         }
     }
+
     repositories {
-        mavenLocal()
+        maven { url = "http://starly.kr:8083/repository/maven-public/"; allowInsecureProtocol = true }
     }
 }
 
-build.dependsOn publishToMavenLocal
+//build.dependsOn publishToMavenLocal TODO: 주석 해제
