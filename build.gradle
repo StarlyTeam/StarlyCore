@@ -14,22 +14,21 @@ repositories {
 }
 
 dependencies {
-    // JAVA DEPENDENCIES
     compileOnly "org.jetbrains:annotations:23.0.0"
     compileOnly "org.projectlombok:lombok:1.18.26"
     annotationProcessor "org.projectlombok:lombok:1.18.26"
     api "com.google.guava:guava:31.1-jre"
 
-    // BUKKIT DEPENDENCIES
     compileOnly "org.spigotmc:spigot-api:R0.1:1.12.2"
 }
 
-tasks.withType(JavaCompile).configureEach {
+tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
 shadowJar {
     archiveFileName = 'StarlyCore.jar'
+    destinationDirectory = file('파일위치')
 }
 
 publishing {
@@ -42,16 +41,9 @@ publishing {
             from components.java
         }
     }
-
     repositories {
-        maven {
-            credentials {
-                username "admin"
-                password "843BB7653935EA4C"
-            }
-
-            url = "http://starly.kr:8083/repository/maven-public/"
-            allowInsecureProtocol = true
-        }
+        mavenLocal()
     }
 }
+
+build.dependsOn publishToMavenLocal

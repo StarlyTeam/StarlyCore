@@ -1,2 +1,3 @@
 rootProject.name = 'StarlyCore'
+include 'Test-Plugin'
 

@@ -25,8 +25,10 @@ public class PlayerSkullUtil {
     private static boolean highVersion;
     private static Server server;
 
+    private PlayerSkullUtil() {}
+
     /**
-     * 호출 하지 마세요.
+     * 해당 함수를 호출하지마세요.
      */
     @Deprecated
     public static void initialize(Version version, Server server) {
