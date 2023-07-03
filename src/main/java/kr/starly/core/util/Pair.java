@@ -12,6 +12,10 @@ public class Pair<F, S> implements Serializable {
         this.second = second;
     }
 
+    public static <F, S> Pair<F, S> of(F first, S second) {
+        return new Pair<F, S>(first, second);
+    }
+
     public F getFirst() {
         return first;
     }
@@ -40,6 +44,6 @@ public class Pair<F, S> implements Serializable {
 
     @Override
     public String toString() {
-        return "Pair " + Integer.toHexString(hashCode()) + ": (" + first.toString() + ", " + second.toString() + ")";
+        return "Pair@" + Integer.toHexString(hashCode()) + ": (" + first.toString() + ", " + second.toString() + ")";
     }
 }
