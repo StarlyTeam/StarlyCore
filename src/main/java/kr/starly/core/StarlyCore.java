@@ -14,7 +14,7 @@ public class StarlyCore extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        this.instance = this;
+        instance = this;
     }
 
     @Override
@@ -24,6 +24,5 @@ public class StarlyCore extends JavaPlugin {
         VersionController.initialize(this);
         PlayerSkullUtil.initialize(VersionController.getInstance().getVersion(), getServer());
         ItemStackNameUtil.initialize(this);
-        System.out.println("버전: " + VersionController.getInstance().getVersion().name());
     }
 }
