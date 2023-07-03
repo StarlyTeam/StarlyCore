@@ -28,7 +28,7 @@ tasks.withType(JavaCompile) {
 
 shadowJar {
     archiveFileName = 'StarlyCore.jar'
-    destinationDirectory = file('파일위치')
+    destinationDirectory = file('C:\\Users\\PC\\Desktop\\Paper\\plugins')
 }
 
 publishing {
