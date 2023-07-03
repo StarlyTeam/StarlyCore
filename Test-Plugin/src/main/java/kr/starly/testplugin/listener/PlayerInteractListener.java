@@ -13,8 +13,8 @@ public class PlayerInteractListener implements Listener {
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
-        String itemName = ItemStackNameUtil.getItemName(itemInMainHand);
+        String itemName = ItemStackNameUtil.getKoreanItemName(itemInMainHand);
 
-        System.out.println(itemName);
+        player.sendMessage(itemName);
     }
 }

@@ -63,15 +63,13 @@ public class ItemStackNameUtil {
      * @param itemStack 아이템
      * @return 한국어 이름
      */
-    public static String getItemName(ItemStack itemStack) {
+    public static String getKoreanItemName(ItemStack itemStack) {
         if (itemStack.hasItemMeta() && itemStack.getItemMeta().hasDisplayName())
             return itemStack.getItemMeta().getDisplayName();
 
         try {
-            NmsItemStackUtil nmsItem = NmsItemStackUtil.getInstance();
-            ItemStackWrapper nmsItemStack = nmsItem.asNMSCopy(itemStack);
-            ItemWrapper item = nmsItemStack.getItem();
-            String unlocalizedName = item.getUnlocalizedName(nmsItemStack);
+            String unlocalizedName = getUnlocalizedNameFromItem(itemStack);
+
             if (languageMap.containsKey(unlocalizedName)) {
                 return languageMap.get(unlocalizedName);
             } else {
@@ -84,5 +82,12 @@ public class ItemStackNameUtil {
             ignored.printStackTrace();
         }
         return itemStack.getType().name().toLowerCase().replace("_", " ");
+    }
+
+    private static String getUnlocalizedNameFromItem(ItemStack itemStack) {
+        NmsItemStackUtil nmsItem = NmsItemStackUtil.getInstance();
+        ItemStackWrapper nmsItemStack = nmsItem.asNMSCopy(itemStack);
+        ItemWrapper item = nmsItemStack.getItem();
+        return item.getUnlocalizedName(nmsItemStack);
     }
 }

@@ -1,11 +1,13 @@
 package kr.starly.core.nms.wrapper;
 
 import kr.starly.core.nms.tank.NmsItemUtil;
-import kr.starly.core.nms.tank.NmsOtherUtil;
+import kr.starly.core.nms.version.Version;
+import kr.starly.core.nms.version.VersionController;
 import lombok.Getter;
-import org.bukkit.entity.Player;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ItemWrapper {
 
@@ -16,10 +18,27 @@ public class ItemWrapper {
         try {
             support = itemSupport;
             Method getItemMethod;
+
+            Version version = VersionController.getInstance().getVersion();
             try {
-                getItemMethod = itemSupport.getNmsItemStackClass().getMethod("getItem");
+                getItemMethod = itemSupport.getItemStackClass().getMethod("getItem");
             } catch (Exception e) {
-                getItemMethod = itemSupport.getNmsItemStackClass().getMethod("c");
+                Map<String, String> methodNameMap = new HashMap<>();
+                methodNameMap.put("v1_12_R1", "c");
+                methodNameMap.put("v1_13_R1", "b");
+                methodNameMap.put("v1_13_R2", "b");
+                methodNameMap.put("v1_14_R1", "b");
+                methodNameMap.put("v1_15_R1", "b");
+                methodNameMap.put("v1_16_R2", "b");
+                methodNameMap.put("v1_16_R3", "b");
+                methodNameMap.put("v1_17_R1", "c");
+                methodNameMap.put("v1_18_R1", "c");
+                methodNameMap.put("v1_18_R2", "c");
+                methodNameMap.put("v1_19_R1", "c");
+                methodNameMap.put("v1_19_R2", "c");
+                methodNameMap.put("v1_19_R3", "c");
+                methodNameMap.put("v1_20_R1", "d");
+                getItemMethod = itemSupport.getItemStackClass().getMethod(methodNameMap.get(version.name()));
             }
             Item = getItemMethod.invoke(nmsItemStackWrapper.getNmsItemStack());
         } catch (Exception e) {
@@ -35,20 +54,9 @@ public class ItemWrapper {
      */
     public String getUnlocalizedName(ItemStackWrapper nmsItemStack) {
         try {
-            return (String) support.getJMethod().invoke(Item, nmsItemStack.getNmsItemStack());
+            return (String) support.getGetDescriptionIdMethod().invoke(Item, nmsItemStack.getNmsItemStack());
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
-        }
-    }
-
-    public Object getEnumInteractionResult(WorldWrapper world, Player player, Object enumHand) {
-        try {
-            return support.getAMethod().invoke(
-                    world.getWorld(),
-                    NmsOtherUtil.getHandleAtPlayer().invoke(NmsOtherUtil.getCraftPlayerClass().cast(player)),
-                    enumHand);
-        } catch (Exception ignored) {
             return null;
         }
     }
