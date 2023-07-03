@@ -18,6 +18,7 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.18.26"
     annotationProcessor "org.projectlombok:lombok:1.18.26"
     api "com.google.guava:guava:31.1-jre"
+    api "org.reflections:reflections:0.10.2"
 
     compileOnly "org.spigotmc:spigot-api:R0.1:1.12.2"
 }
@@ -28,7 +29,7 @@ tasks.withType(JavaCompile) {
 
 shadowJar {
     archiveFileName = 'StarlyCore.jar'
-    destinationDirectory = file('C:\\Users\\PC\\Desktop\\Paper\\plugins')
+    destinationDirectory = file('파일위치')
 }
 
 publishing {
