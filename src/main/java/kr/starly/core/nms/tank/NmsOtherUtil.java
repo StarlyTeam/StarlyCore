@@ -35,9 +35,6 @@ public class NmsOtherUtil {
         return WorldClass;
     }
 
-//    private Class<?> CraftWorldClass;
-//    private Method getHandleAtWorld;
-
     private Class<?> EntityHumanClass;
     public Class<?> getEntityHumanClass() {
         if (EntityHumanClass == null) {

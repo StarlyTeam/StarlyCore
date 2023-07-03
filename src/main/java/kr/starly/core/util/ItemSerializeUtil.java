@@ -9,9 +9,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 
-public class ItemSerializationUtil {
+public class ItemSerializeUtil {
 
-    private ItemSerializationUtil() {}
+    private ItemSerializeUtil() {}
 
     /**
      * ItemStack을 직렬화하여 Base64로 인코딩합니다.

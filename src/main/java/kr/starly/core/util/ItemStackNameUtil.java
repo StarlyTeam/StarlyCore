@@ -63,7 +63,7 @@ public class ItemStackNameUtil {
      * @param itemStack 아이템
      * @return 한국어 이름
      */
-    public static String getKoreanItemName(ItemStack itemStack) {
+    public static String getKorean(ItemStack itemStack) {
         if (itemStack.hasItemMeta() && itemStack.getItemMeta().hasDisplayName())
             return itemStack.getItemMeta().getDisplayName();
 
