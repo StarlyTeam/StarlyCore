@@ -32,7 +32,7 @@ public class NmsItemUtil {
             methodNameMap.put("v1_16_R1", "f");
             methodNameMap.put("v1_16_R2", "f");
             methodNameMap.put("v1_16_R3", "f");
-            methodNameMap.put("v1_17_R1", "n");
+            methodNameMap.put("v1_17_R1", "j");
             methodNameMap.put("v1_18_R1", "j");
             methodNameMap.put("v1_18_R2", "j");
             methodNameMap.put("v1_19_R1", "j");
