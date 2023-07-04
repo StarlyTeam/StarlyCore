@@ -136,7 +136,7 @@ public class PlayerSkullUtil {
             try {
                 Method method = Class.forName("org.bukkit.craftbukkit.libs.org.apache.commons.codec.binary.Base64").getMethod("encodeBase64", byte[].class);
                 return (byte[]) method.invoke(null, byteArray);
-            } catch (Exception ignored_) { throw new NotSupportedVersionException(server.getVersion()); }
+            } catch (Exception ignored1) { throw new NotSupportedVersionException(server.getVersion()); }
         }
     }
 }

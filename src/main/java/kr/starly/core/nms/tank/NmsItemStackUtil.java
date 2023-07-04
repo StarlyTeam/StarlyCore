@@ -1,29 +1,23 @@
 package kr.starly.core.nms.tank;
 
 
-import kr.starly.core.nms.version.Version;
-import kr.starly.core.nms.version.VersionController;
 import kr.starly.core.nms.wrapper.ItemStackWrapper;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 public class NmsItemStackUtil {
 
-    private NmsItemStackUtil() {}
-
     private static NmsItemStackUtil instance;
 
-    private Method bukkitCopyMethod;
-    private Method nmsCopyMethod;
-    @Getter private Method setTagMethod;
-    @Getter private Method getTagMethod;
-    @Getter private NmsNbtTagCompoundUtil nbtCompoundUtil;
-    private NmsItemUtil nmsItemSupport;
+    private final Method bukkitCopyMethod;
+    private final Method nmsCopyMethod;
+    @Getter private final Method setTagMethod;
+    @Getter private final Method getTagMethod;
+    @Getter private final NmsNbtTagCompoundUtil nbtCompoundUtil;
+    private final NmsItemUtil nmsItemSupport;
 
     /**
      * NMS 의 ItemStack 을 얻기 위한 Util 객체를 가져옵니다.
@@ -35,7 +29,7 @@ public class NmsItemStackUtil {
     @Nullable
     public static NmsItemStackUtil getInstance() {
         try {
-            if (instance == null) instance = new NmsItemStackUtil(VersionController.getInstance().getVersion());
+            if (instance == null) instance = new NmsItemStackUtil();
             return instance;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -43,59 +37,19 @@ public class NmsItemStackUtil {
         }
     }
 
-    private NmsItemStackUtil(Version version) throws ClassNotFoundException, NoSuchMethodException {
-        String craftItemStackClassName = "org.bukkit.craftbukkit." + version.getVersion() + ".inventory.CraftItemStack";
-        String nmsItemStackClassName = "net.minecraft.server." + version.getVersion() + ".ItemStack";
-        nbtCompoundUtil = new NmsNbtTagCompoundUtil("net.minecraft.server." + version.getVersion() + ".NBTTagCompound");
+    private NmsItemStackUtil() throws NoSuchMethodException {
+        NmsOtherUtil nmsOtherUtil = NmsOtherUtil.getInstance();
 
-        Class<?> craftItemStack = Class.forName(craftItemStackClassName);
-        Class<?> NMSItemStack;
-        try {
-            NMSItemStack = Class.forName(nmsItemStackClassName);
-        } catch (Exception ignored) {
-            NMSItemStack = Class.forName("net.minecraft.world.item.ItemStack");
-        }
-        try {
-            nmsItemSupport = new NmsItemUtil("net.minecraft.server." + version.getVersion() + ".Item", NMSItemStack);
-        } catch (Exception ignored) {
-            nmsItemSupport = new NmsItemUtil("net.minecraft.world.item.Item", NMSItemStack);
-        }
+        Class<?> craftItemStack = nmsOtherUtil.CraftItemStack();
+        Class<?> NMSItemStack = nmsOtherUtil.ItemStack();
+        setTagMethod = nmsOtherUtil.ItemStack_setTag();
+        getTagMethod = nmsOtherUtil.ItemStack_getTag();
+
         bukkitCopyMethod = craftItemStack.getDeclaredMethod("asBukkitCopy", NMSItemStack);
         nmsCopyMethod = craftItemStack.getDeclaredMethod("asNMSCopy", ItemStack.class);
-        try {
-            setTagMethod = NMSItemStack.getDeclaredMethod("setTag", nbtCompoundUtil.getNBTTagCompoundClass());
-        } catch (Exception ignored) {
-            Map<String, String> methodNameMap = new HashMap<>();
-            methodNameMap.put("v1_16_R1", "c");
-            methodNameMap.put("v1_16_R2", "c");
-            methodNameMap.put("v1_16_R3", "c");
-            methodNameMap.put("v1_17_R1", "c");
-            methodNameMap.put("v1_18_R1", "c");
-            methodNameMap.put("v1_18_R2", "c");
-            methodNameMap.put("v1_19_R1", "c");
-            methodNameMap.put("v1_19_R2", "c");
-            methodNameMap.put("v1_19_R3", "c");
-            methodNameMap.put("v1_20_R1", "c");
 
-            setTagMethod = NMSItemStack.getDeclaredMethod(methodNameMap.get(version.name()), nbtCompoundUtil.getNBTTagCompoundClass());
-        }
-        try {
-            getTagMethod = NMSItemStack.getDeclaredMethod("getTag");
-        } catch (Exception ignored) {
-            Map<String, String> methodNameMap = new HashMap<>();
-            methodNameMap.put("v1_16_R1", "u");
-            methodNameMap.put("v1_16_R2", "u");
-            methodNameMap.put("v1_16_R3", "u");
-            methodNameMap.put("v1_17_R1", "u");
-            methodNameMap.put("v1_18_R1", "u");
-            methodNameMap.put("v1_18_R2", "u");
-            methodNameMap.put("v1_19_R1", "u");
-            methodNameMap.put("v1_19_R2", "u");
-            methodNameMap.put("v1_19_R3", "u");
-            methodNameMap.put("v1_20_R1", "v");
-
-            getTagMethod = NMSItemStack.getDeclaredMethod(methodNameMap.get(version.name()));
-        }
+        nbtCompoundUtil = new NmsNbtTagCompoundUtil();
+        nmsItemSupport = new NmsItemUtil();
     }
 
     /**
