@@ -1,4 +1,4 @@
-package kr.starly.core.language;
+package kr.starly.core.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
