@@ -1,7 +1,7 @@
 package kr.starly.testplugin.listener;
 
-import kr.starly.core.language.Language;
 import kr.starly.core.util.ItemStackNameUtil;
+import kr.starly.core.util.Language;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
