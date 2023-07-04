@@ -19,6 +19,9 @@ public class NmsOtherUtil {
     private final Version version = VersionController.getInstance().getVersion();
     private final String nmsPackage = "net.minecraft.server." + version.name();
 
+    /**
+     * Class - WorldClass
+     */
     private Class<?> WorldClass;
     public Class<?> getWorldClass() {
         if (WorldClass == null) {
@@ -35,6 +38,9 @@ public class NmsOtherUtil {
         return WorldClass;
     }
 
+    /**
+     * Class - EntityHumanClass
+     */
     private Class<?> EntityHumanClass;
     public Class<?> getEntityHumanClass() {
         if (EntityHumanClass == null) {
@@ -51,6 +57,9 @@ public class NmsOtherUtil {
         return EntityHumanClass;
     }
 
+    /**
+     * Class - EnumHandClass
+     */
     private Class<?> EnumHandClass;
     public Class<?> getEnumHandClass() {
         if (EnumHandClass == null) {
@@ -67,6 +76,9 @@ public class NmsOtherUtil {
         return EnumHandClass;
     }
 
+    /**
+     * Class - CraftPlayerClass
+     */
     private Class<?> CraftPlayerClass;
     public Class<?> getCraftPlayerClass() {
         if (CraftPlayerClass == null) {
@@ -79,6 +91,43 @@ public class NmsOtherUtil {
         return CraftPlayerClass;
     }
 
+    /**
+     * Class - EntityArmorStandClass
+     */
+    private Class<?> EntityArmorStandClass;
+    public Class<?> EntityArmorStandClass() {
+        try {
+            EntityArmorStandClass = Class.forName(nmsPackage + ".EntityArmorStand");
+        } catch (ClassNotFoundException e) {
+            try {
+                EntityArmorStandClass = Class.forName("net.minecraft.world.entity.decoration.EntityArmorStand");
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return EntityArmorStandClass;
+    }
+
+    /**
+     * Class - EntityClass
+     */
+    private Class<?> EntityClass;
+    public Class<?> EntityClass() {
+        try {
+            EntityClass = Class.forName(nmsPackage + ".Entity");
+        } catch (ClassNotFoundException e) {
+            try {
+                EntityClass = Class.forName("net.minecraft.world.entity.Entity");
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return EntityClass;
+    }
+
+    /**
+     * Method - getHandleAtCraftPlayer
+     */
     private Method getHandleAtCraftPlayer;
     public Method getHandleAtPlayer() {
         if (getHandleAtCraftPlayer == null) {

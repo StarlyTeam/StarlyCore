@@ -32,7 +32,7 @@ public class PlayerSkullUtil {
      */
     @Deprecated
     public static void initialize(Version version, Server server) {
-        highVersion = version.highVersion;
+        highVersion = version.isHighVersion();
         PlayerSkullUtil.server = server;
     }
 

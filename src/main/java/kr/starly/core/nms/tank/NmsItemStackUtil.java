@@ -44,9 +44,9 @@ public class NmsItemStackUtil {
     }
 
     private NmsItemStackUtil(Version version) throws ClassNotFoundException, NoSuchMethodException {
-        String craftItemStackClassName = "org.bukkit.craftbukkit." + version.version + ".inventory.CraftItemStack";
-        String nmsItemStackClassName = "net.minecraft.server." + version.version + ".ItemStack";
-        nbtCompoundUtil = new NmsNbtTagCompoundUtil("net.minecraft.server." + version.version + ".NBTTagCompound");
+        String craftItemStackClassName = "org.bukkit.craftbukkit." + version.getVersion() + ".inventory.CraftItemStack";
+        String nmsItemStackClassName = "net.minecraft.server." + version.getVersion() + ".ItemStack";
+        nbtCompoundUtil = new NmsNbtTagCompoundUtil("net.minecraft.server." + version.getVersion() + ".NBTTagCompound");
 
         Class<?> craftItemStack = Class.forName(craftItemStackClassName);
         Class<?> NMSItemStack;
@@ -56,7 +56,7 @@ public class NmsItemStackUtil {
             NMSItemStack = Class.forName("net.minecraft.world.item.ItemStack");
         }
         try {
-            nmsItemSupport = new NmsItemUtil("net.minecraft.server." + version.version + ".Item", NMSItemStack);
+            nmsItemSupport = new NmsItemUtil("net.minecraft.server." + version.getVersion() + ".Item", NMSItemStack);
         } catch (Exception ignored) {
             nmsItemSupport = new NmsItemUtil("net.minecraft.world.item.Item", NMSItemStack);
         }

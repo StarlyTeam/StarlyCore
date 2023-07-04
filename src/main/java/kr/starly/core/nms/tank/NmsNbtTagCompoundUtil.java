@@ -9,13 +9,11 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class NmsNbtTagCompoundUtil {
 
-    @Getter
     private Class<?> NBTTagCompoundClass;
-    @Getter
     private Method getStringMethod;
-    @Getter
     private Method setStringMethod;
 
     NmsNbtTagCompoundUtil(String nbtTagCompoundClassName) throws ClassNotFoundException, NoSuchMethodException {

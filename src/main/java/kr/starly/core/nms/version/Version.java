@@ -1,5 +1,7 @@
 package kr.starly.core.nms.version;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,8 +31,8 @@ public enum Version {
     v1_20_R1(Arrays.asList("1.20-R0.1", "1.20.1-R0.1"), true);
 
     private final List<String> versions;
-    public final String version = name();
-    public final boolean highVersion;
+    @Getter private final String version = name();
+    @Getter private final boolean highVersion;
 
     Version(List<String> versions, boolean highVersion) {
         this.versions = versions;

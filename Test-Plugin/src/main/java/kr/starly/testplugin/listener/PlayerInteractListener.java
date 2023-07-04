@@ -1,5 +1,6 @@
 package kr.starly.testplugin.listener;
 
+import kr.starly.core.language.Language;
 import kr.starly.core.util.ItemStackNameUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,8 +14,9 @@ public class PlayerInteractListener implements Listener {
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
-        String itemName = ItemStackNameUtil.getKorean(itemInMainHand);
 
-        player.sendMessage(itemName);
+        for (Language language : Language.values()) {
+            player.sendMessage(language + " | " + ItemStackNameUtil.getNameInLanguage(itemInMainHand, language));
+        }
     }
 }
