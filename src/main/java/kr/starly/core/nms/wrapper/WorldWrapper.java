@@ -8,6 +8,6 @@ import org.bukkit.World;
 @Getter
 public class WorldWrapper {
 
-    private final org.bukkit.World bukkitWorld;
-    private final World world;
+    private final World bukkitWorld;
+    private final Object world;
 }
