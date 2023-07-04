@@ -1,6 +1,6 @@
 package kr.starly.core.nms.version;
 
-import kr.starly.core.exception.UnSupportedVersionException;
+import kr.starly.core.exception.NotSupportedVersionException;
 import lombok.Getter;
 import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,20 +21,20 @@ public class VersionController {
         if (instance == null) {
             try {
                 instance = new VersionController(plugin.getServer());
-            } catch (UnSupportedVersionException e) { e.printStackTrace(); }
+            } catch (NotSupportedVersionException ex) { ex.printStackTrace(); }
         }
         return instance;
     }
 
     @Getter private final Version version;
 
-    private VersionController(Server server) throws UnSupportedVersionException {
+    private VersionController(Server server) throws NotSupportedVersionException {
         version = checkVersions(server);
     }
 
-    private Version checkVersions(Server server) throws UnSupportedVersionException {
+    private Version checkVersions(Server server) throws NotSupportedVersionException {
         Optional<Version> matchVersion = Stream.of(Version.values()).filter(it -> it.matches(server.getBukkitVersion())).findFirst();
         if (matchVersion.isPresent()) return matchVersion.get();
-        else throw new UnSupportedVersionException(server.getVersion());
+        else throw new NotSupportedVersionException(server.getVersion());
     }
 }

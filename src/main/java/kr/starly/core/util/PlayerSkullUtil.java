@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import kr.starly.core.exception.UnSupportedVersionException;
+import kr.starly.core.exception.NotSupportedVersionException;
 import kr.starly.core.nms.version.Version;
 import org.bukkit.Material;
 import org.bukkit.Server;
@@ -118,25 +118,25 @@ public class PlayerSkullUtil {
         return server.getUnsafe().modifyItemStack(baseItem, skinTag);
     }
 
-    private static String getURLContents(String stringUrl) throws UnSupportedVersionException {
+    private static String getURLContents(String stringUrl) throws NotSupportedVersionException {
         try {
             URL url = new URL(stringUrl);
             StringBuilder builder = new StringBuilder();
             try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8))) {
                 br.lines().forEach(builder::append);
                 return builder.toString();
-            } catch (Exception e) { throw new UnSupportedVersionException(server.getVersion()); }
-        } catch (Exception e) { throw new UnSupportedVersionException(server.getVersion()); }
+            } catch (Exception e) { throw new NotSupportedVersionException(server.getVersion()); }
+        } catch (Exception e) { throw new NotSupportedVersionException(server.getVersion()); }
     }
 
-    private static byte[] launchBase64Method(byte[] byteArray) throws UnSupportedVersionException {
+    private static byte[] launchBase64Method(byte[] byteArray) throws NotSupportedVersionException {
         try {
             return Base64.getEncoder().encode(byteArray);
         } catch (Exception ignored) {
             try {
                 Method method = Class.forName("org.bukkit.craftbukkit.libs.org.apache.commons.codec.binary.Base64").getMethod("encodeBase64", byte[].class);
                 return (byte[]) method.invoke(null, byteArray);
-            } catch (Exception ignored_) { throw new UnSupportedVersionException(server.getVersion()); }
+            } catch (Exception ignored_) { throw new NotSupportedVersionException(server.getVersion()); }
         }
     }
 }
