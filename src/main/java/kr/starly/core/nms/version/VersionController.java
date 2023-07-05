@@ -21,7 +21,9 @@ public class VersionController {
         if (instance == null) {
             try {
                 instance = new VersionController(plugin.getServer());
-            } catch (NotSupportedVersionException ex) { ex.printStackTrace(); }
+            } catch (NotSupportedVersionException ex) {
+                    ex.printStackTrace();
+                }
         }
         return instance;
     }

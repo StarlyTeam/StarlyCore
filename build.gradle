@@ -15,18 +15,20 @@ repositories {
 
 dependencies {
     compileOnly "org.jetbrains:annotations:23.0.0"
-    compileOnly "com.google.guava:guava:31.1-jre"
     compileOnly "org.projectlombok:lombok:1.18.26"
     annotationProcessor "org.projectlombok:lombok:1.18.26"
 
+    api "com.google.guava:guava:31.1-jre"
+    api "commons-io:commons-io:2.11.0"
     api "com.google.code.gson:gson:2.10.1"
     api "org.reflections:reflections:0.10.2"
 
+
     compileOnly "org.spigotmc:spigot-api:R0.1:1.12.2"
-    compileOnly "com.mojang:authlib:4.0.43"
+    compileOnly fileTree(dir: "api/", includes: ["*.jar"])
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 

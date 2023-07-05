@@ -11,9 +11,9 @@ import lombok.Setter;
 @Setter
 public class ItemStackWrapper {
 
-    public Object nmsItemStack;
-    public NmsItemUtil itemSupport;
-    public NmsItemStackUtil wrapper;
+    private Object nmsItemStack;
+    private NmsItemUtil itemSupport;
+    private NmsItemStackUtil wrapper;
 
     /**
      * ItemStack 에 있는 NMSTagCompound 를 가져옵니다.
@@ -40,8 +40,8 @@ public class ItemStackWrapper {
         try {
             wrapper.getSetTagMethod().invoke(nmsItemStack, tag.getNbtTagCompound());
         } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+                    ex.printStackTrace();
+                }
     }
 
     public ItemWrapper getItem() {

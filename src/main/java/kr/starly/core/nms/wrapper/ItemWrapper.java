@@ -39,10 +39,12 @@ public class ItemWrapper {
                 methodNameMap.put("v1_19_R3", "c");
                 methodNameMap.put("v1_20_R1", "d");
 
-                getItemMethod = itemSupport.getItemStackClass().getMethod(methodNameMap.get(version.name()));
+                getItemMethod = itemSupport.getItemStackClass().getMethod(methodNameMap.get(version.getVersion()));
             }
             Item = getItemMethod.invoke(nmsItemStackWrapper.getNmsItemStack());
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
     }
 
     /**
