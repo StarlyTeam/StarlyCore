@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -35,8 +36,6 @@ public class ItemStackNameUtil {
         for (Language language : Language.values()) {
             languageMap = new HashMap<>();
             String resourceFileName = "lang/" + numericPart + "/" + language.getName() + (numericPart.equals("1_12") ? ".lang" : ".json");
-
-            System.out.println(resourceFileName);
 
             try (InputStream inputStream = plugin.getResource(resourceFileName)) {
                 if (numericPart.equals("1_12")) {
@@ -73,7 +72,6 @@ public class ItemStackNameUtil {
     public static String getNameInLanguage(ItemStack itemStack, Language language) {
         if (itemStack.hasItemMeta() && itemStack.getItemMeta().hasDisplayName())
             return itemStack.getItemMeta().getDisplayName();
-
         try {
             String unlocalizedName = getUnlocalizedNameFromItem(itemStack);
 

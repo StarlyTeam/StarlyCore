@@ -7,12 +7,12 @@ import lombok.Getter;
 @Getter
 public enum Language {
 
+    KOREAN("ko_kr"),
     CHINESE("zh_cn"),
     ENGLISH("en_us"),
     SPANISH("es_ar"),
     FRENCH("fr_fr"),
     ITALIAN("it_it"),
-    KOREAN("ko_kr"),
     JAPANESE("ja_jp"),
     POLISH("pl_pl"),
     THAI("th_th"),

@@ -24,6 +24,5 @@ public class StarlyCore extends JavaPlugin {
         VersionController.initialize(this);
         PlayerSkullUtil.initialize(VersionController.getInstance().getVersion(), getServer());
         ItemStackNameUtil.initialize(this);
-        System.out.println(VersionController.getInstance().getVersion());
     }
 }
