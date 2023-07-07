@@ -366,13 +366,8 @@ public class ArmorStandWrapper {
                         id,
                         nmsOtherUtil.DataWatcher_getNonDefaultValues().invoke(nmsOtherUtil.Entity_getDataWatcher().invoke(entityArmorStand))
                 );
-            } catch (Exception ignored1) {
-                try {
-                    // TODO (int, List) constructor
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
     }
