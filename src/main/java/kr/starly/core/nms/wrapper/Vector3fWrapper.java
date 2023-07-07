@@ -23,11 +23,17 @@ public class Vector3fWrapper {
         }
     }
 
+    public Vector3fWrapper(float x, float y, float z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     public Object getAsVector3f() {
         NmsOtherUtil nmsOtherUtil = NmsOtherUtil.getInstance();
 
         try {
-            return nmsOtherUtil.Vector3f().getConstructor(float.class, float.class, float.class).newInstance(x, y, z);
+            return nmsOtherUtil.Vector3f_Constructor().newInstance(x, y, z);
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

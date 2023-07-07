@@ -92,7 +92,7 @@ public class ItemStackNameUtil {
 
     private static String getUnlocalizedNameFromItem(ItemStack itemStack) {
         NmsItemStackUtil nmsItem = NmsItemStackUtil.getInstance();
-        ItemStackWrapper nmsItemStack = nmsItem.asNMSCopy(itemStack);
+        ItemStackWrapper nmsItemStack = nmsItem.asWrapperCopy(itemStack);
         ItemWrapper item = nmsItemStack.getItem();
         return item.getUnlocalizedName(nmsItemStack);
     }
