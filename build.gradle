@@ -34,7 +34,7 @@ tasks.withType(JavaCompile).configureEach {
 
 shadowJar {
     archiveFileName = "StarlyCore.jar"
-    destinationDirectory = file("C:\\Users\\korea\\OneDrive\\바탕 화면\\서버 구동기\\1.20.1\\purpur\\plugins")
+    destinationDirectory = file("파일경로")
 }
 
 publishing {
