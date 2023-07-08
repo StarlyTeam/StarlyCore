@@ -9,8 +9,8 @@ public enum Version {
 
     v1_12_R1(Arrays.asList("1.12-R0.1", "1.12.1-R0.1", "1.12.2-R0.1"), false),
 
-    v1_13_R1(Arrays.asList("1.13-R0.1", "1.13.1-R0.1", "1.13-R0.1"), true),
-    v1_13_R2(Arrays.asList("1.13.2-R0.1"), true),
+    v1_13_R1(Arrays.asList("1.13-R0.1"), true),
+    v1_13_R2(Arrays.asList("1.13.1-R0.1",  "1.13.2-R0.1"), true),
 
     v1_14_R1(Arrays.asList("1.14-R0.1", "1.14.1-R0.1", "1.14.2-R0.1", "1.14.3-R0.1", "1.14.4-R0.1"), true),
 

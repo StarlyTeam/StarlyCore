@@ -9,8 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class StarlyCore extends JavaPlugin {
 
-    @Getter
-    private static StarlyCore instance;
+    @Getter private static StarlyCore instance;
 
     @Override
     public void onLoad() {

@@ -53,7 +53,7 @@ public class NmsItemStackUtil {
     }
 
     /**
-     * ItemStackWrapper 을/를 Bukkit-API 의 ItemStack 으로 변경해줍니다.
+     * ItemStackWrapper를 Bukkit-API의 ItemStack으로 변경해줍니다.
      *
      * @param nmsItemStack ItemStackWrapper
      * @return Bukkit-API ItemStack
@@ -61,22 +61,39 @@ public class NmsItemStackUtil {
     public ItemStack asBukkitCopy(ItemStackWrapper nmsItemStack) {
         try {
             return (ItemStack) bukkitCopyMethod.invoke(null, nmsItemStack.getNmsItemStack());
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
     }
 
     /**
-     * Bukkit-API 의 ItemStack 을/를 ItemStackWrapper 로 변경해줍니다.
+     * Bukkit-API의 ItemStack을 NMS의 ItemStack으로 변경해줍니다.
+     *
+     * @param itemStack Bukkit-API ItemStack
+     * @return ItemStackWrapper
+     */
+    public Object asNMSCopy(ItemStack itemStack) {
+        try {
+            return nmsCopyMethod.invoke(null, itemStack);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Bukkit-API의 ItemStack을 ItemStackWrapper로 변경해줍니다.
      *
      * @param itemStack Bukkit-API ItemStack
      * @return ItemStackWrapper
      */
     @Nullable
-    public ItemStackWrapper asNMSCopy(ItemStack itemStack) {
+    public ItemStackWrapper asWrapperCopy(ItemStack itemStack) {
         try {
-            return new ItemStackWrapper(nmsCopyMethod.invoke(null, itemStack), nmsItemSupport, this);
-        } catch (Exception e) {
+            return new ItemStackWrapper(asNMSCopy(itemStack), nmsItemSupport, this);
+        } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
     }

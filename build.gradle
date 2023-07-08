@@ -29,11 +29,12 @@ dependencies {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+    options.encoding = "UTF-8"
 }
 
 shadowJar {
-    archiveFileName = 'StarlyCore.jar'
+    archiveFileName = "StarlyCore.jar"
+    destinationDirectory = file("파일경로")
 }
 
 publishing {
