@@ -64,6 +64,7 @@ public class ArmorStandWrapper {
     }
 
     @Getter private boolean invisible;
+
     public void setInvisible(boolean invisible) {
         this.invisible = invisible;
 
@@ -87,6 +88,7 @@ public class ArmorStandWrapper {
     }
 
     @Getter private boolean showArms;
+
     public void setShowArms(boolean showArms) {
         this.showArms = showArms;
 
@@ -98,7 +100,8 @@ public class ArmorStandWrapper {
     }
 
     @Getter private boolean showBasePlate;
-    public void setShowBasePlate(boolean showBasePlate) {
+
+    public void setHideBasePlate(boolean showBasePlate) {
         this.showBasePlate = showBasePlate;
 
         try {
@@ -201,8 +204,9 @@ public class ArmorStandWrapper {
         try {
             return new Vector3fWrapper(nmsOtherUtil.EntityArmorStand_rightLegPose().get(entityArmorStand));
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -301,7 +305,7 @@ public class ArmorStandWrapper {
 
     public void remove(Player target) {
         try {
-            nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityDestroy_Constructor(), new int[] {id});
+            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityDestroy_Constructor(), new int[]{id});
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -341,8 +345,8 @@ public class ArmorStandWrapper {
         try {
             Version version = VersionController.getInstance().getVersion();
             return version.isHighVersion() ?
-                    new Object[] {id, Arrays.asList(nmsOtherUtil.Pair().newInstance(enumItemSlot, NmsItemStackUtil.getInstance().asNMSCopy(itemStack)))} :
-                    new Object[] {id, enumItemSlot, NmsItemStackUtil.getInstance().asNMSCopy(itemStack).getNmsItemStack()};
+                    new Object[]{id, Arrays.asList(nmsOtherUtil.Pair().newInstance(enumItemSlot, NmsItemStackUtil.getInstance().asNMSCopy(itemStack)))} :
+                    new Object[]{id, enumItemSlot, NmsItemStackUtil.getInstance().asNMSCopy(itemStack)};
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
