@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Test-Plugin" />
+            <option value="$PROJECT_DIR$/TestPlugin" />
           </set>
         </option>
       </GradleProjectSettings>

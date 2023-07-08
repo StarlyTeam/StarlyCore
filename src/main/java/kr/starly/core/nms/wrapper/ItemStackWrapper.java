@@ -40,8 +40,8 @@ public class ItemStackWrapper {
         try {
             wrapper.getSetTagMethod().invoke(nmsItemStack, tag.getNbtTagCompound());
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public ItemWrapper getItem() {

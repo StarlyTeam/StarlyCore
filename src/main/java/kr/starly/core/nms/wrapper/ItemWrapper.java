@@ -43,8 +43,8 @@ public class ItemWrapper {
             }
             Item = getItemMethod.invoke(nmsItemStackWrapper.getNmsItemStack());
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     /**

@@ -12,7 +12,7 @@ public class NmsItemUtil {
     private final Method getDescriptionIdMethod;
     private final Method useMethod;
 
-    public NmsItemUtil() throws NoSuchMethodException {
+    public NmsItemUtil() {
         NmsOtherUtil nmsOtherUtil = NmsOtherUtil.getInstance();
 
         ItemClass = nmsOtherUtil.Item();
