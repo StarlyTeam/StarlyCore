@@ -18,12 +18,12 @@ import java.util.Arrays;
 public class ArmorStandWrapper {
 
     private final NmsOtherUtil nmsOtherUtil = NmsOtherUtil.getInstance();
-    
+
     @Getter private Integer id;
     @Getter private FeatherLocation location;
     @Getter private Object entityArmorStand;
     private Object defaultHeadPose;
-    
+
     public ArmorStandWrapper(Integer id, FeatherLocation location, Object entityArmorStand) {
         this.id = id;
         this.location = location;
@@ -32,77 +32,89 @@ public class ArmorStandWrapper {
         try {
             defaultHeadPose = nmsOtherUtil.EntityArmorStand_getHeadPose().invoke(entityArmorStand);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
 
     /* MetaData
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
-    @Getter private String displayName;
+    @Getter
+    private String displayName;
+
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
-        
+
         try {
             nmsOtherUtil.EntityArmorStand_setCustomName().invoke(entityArmorStand, displayName);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
-    @Getter private boolean small;
+    @Getter
+    private boolean small;
+
     public void setSmall(boolean small) {
         this.small = small;
 
         try {
             nmsOtherUtil.EntityArmorStand_setSmall().invoke(entityArmorStand, small);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
-    @Getter private boolean invisible;
+    @Getter
+    private boolean invisible;
+
     public void setInvisible(boolean invisible) {
         this.invisible = invisible;
 
         try {
             nmsOtherUtil.EntityArmorStand_setInvisible().invoke(entityArmorStand, invisible);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
-    @Getter private boolean customNameVisible;
+    @Getter
+    private boolean customNameVisible;
+
     public void setCustomNameVisible(boolean customNameVisible) {
         this.customNameVisible = customNameVisible;
 
         try {
             nmsOtherUtil.EntityArmorStand_setCustomNameVisible().invoke(entityArmorStand, customNameVisible);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
-    @Getter private boolean showArms;
+    @Getter
+    private boolean showArms;
+
     public void setShowArms(boolean showArms) {
         this.showArms = showArms;
 
         try {
             nmsOtherUtil.EntityArmorStand_setShowArms().invoke(entityArmorStand, showArms);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
-    @Getter private boolean showBasePlate;
+    @Getter
+    private boolean showBasePlate;
+
     public void setShowBasePlate(boolean showBasePlate) {
         this.showBasePlate = showBasePlate;
 
         try {
             nmsOtherUtil.EntityArmorStand_setBasePlate().invoke(entityArmorStand, showBasePlate);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
 
@@ -112,8 +124,8 @@ public class ArmorStandWrapper {
         try {
             return new Vector3fWrapper(nmsOtherUtil.EntityArmorStand_headPose().get(entityArmorStand));
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
         return null;
     }
 
@@ -121,8 +133,8 @@ public class ArmorStandWrapper {
         try {
             nmsOtherUtil.EntityArmorStand_setHeadPose().invoke(entityArmorStand, headPose.getAsVector3f());
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public void resetHeadPose() {
@@ -145,8 +157,8 @@ public class ArmorStandWrapper {
         try {
             nmsOtherUtil.EntityArmorStand_setLeftArmPose().invoke(entityArmorStand, headPose.getAsVector3f());
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public Vector3fWrapper getRightArmsPose() {
@@ -162,19 +174,19 @@ public class ArmorStandWrapper {
         try {
             nmsOtherUtil.EntityArmorStand_setRightArmPose().invoke(entityArmorStand, headPose.getAsVector3f());
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
 
     /* Equipment
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
-    private @Setter @Nullable ItemStack itemInMainHand;
-    private @Setter @Nullable ItemStack itemInOffHand;
-    private @Setter @Nullable ItemStack helmet;
-    private @Setter @Nullable ItemStack chestplate;
-    private @Setter @Nullable ItemStack leggings;
-    private @Setter @Nullable ItemStack boots;
+    @Setter private @Nullable ItemStack itemInMainHand;
+    @Setter private @Nullable ItemStack itemInOffHand;
+    @Setter private @Nullable ItemStack helmet;
+    @Setter private @Nullable ItemStack chestplate;
+    @Setter private @Nullable ItemStack leggings;
+    @Setter private @Nullable ItemStack boots;
 
     public void applyItemInMainHand(Player target) {
         if (itemInMainHand == null) return;
@@ -183,8 +195,8 @@ public class ArmorStandWrapper {
             Object[] args = createEquipmentArgs(enumItemSlot, itemInMainHand);
             nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public void applyItemInOffHand(Player target) {
@@ -194,8 +206,8 @@ public class ArmorStandWrapper {
             Object[] args = createEquipmentArgs(enumItemSlot, itemInOffHand);
             nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public void applyHelmet(Player target) {
@@ -205,8 +217,8 @@ public class ArmorStandWrapper {
             Object[] args = createEquipmentArgs(enumItemSlot, helmet);
             nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public void applyChestplate(Player target) {
@@ -216,8 +228,8 @@ public class ArmorStandWrapper {
             Object[] args = createEquipmentArgs(enumItemSlot, chestplate);
             nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public void applyLeggings(Player target) {
@@ -227,8 +239,8 @@ public class ArmorStandWrapper {
             Object[] args = createEquipmentArgs(enumItemSlot, leggings);
             nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public void applyBoots(Player target) {
@@ -238,8 +250,8 @@ public class ArmorStandWrapper {
             Object[] args = createEquipmentArgs(enumItemSlot, boots);
             nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
 
@@ -249,16 +261,16 @@ public class ArmorStandWrapper {
         try {
             nmsOtherUtil.PlayerConnection_sendPacket().invoke(entityArmorStand, target);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public void remove(Player target) {
         try {
-            nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityDestroy_Constructor(), new int[] {id});
+            nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityDestroy_Constructor(), new int[]{id});
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public void teleport(Player target, Location location) {
@@ -272,8 +284,8 @@ public class ArmorStandWrapper {
             nmsOtherUtil.PlayerConnection_sendPacket().invoke(target, nmsOtherUtil.PacketPlayOutEntityTeleport_Constructor(), entityArmorStand);
             if (savePose) defaultHeadPose = nmsOtherUtil.EntityArmorStand_getHeadPose().invoke(entityArmorStand);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     public void applyMeta(Player target) {
@@ -293,8 +305,8 @@ public class ArmorStandWrapper {
         try {
             Version version = VersionController.getInstance().getVersion();
             return version.isHighVersion() ?
-                    new Object[] {id, Arrays.asList(nmsOtherUtil.Pair().newInstance(enumItemSlot, NmsItemStackUtil.getInstance().asNMSCopy(itemStack)))} :
-                    new Object[] {id, enumItemSlot, NmsItemStackUtil.getInstance().asNMSCopy(itemStack).getNmsItemStack()};
+                    new Object[]{id, Arrays.asList(nmsOtherUtil.Pair().newInstance(enumItemSlot, NmsItemStackUtil.getInstance().asNMSCopy(itemStack)))} :
+                    new Object[]{id, enumItemSlot, NmsItemStackUtil.getInstance().asNMSCopy(itemStack).getNmsItemStack()};
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

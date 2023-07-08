@@ -37,8 +37,8 @@ public class NBTTagCompoundWrapper {
         try {
             wrapper.getSetStringMethod().invoke(nbtTagCompound, key, value);
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -69,7 +69,7 @@ public class NBTTagCompoundWrapper {
         try {
             setString(clazz.getSimpleName(), JsonUtil.toJson(object));
         } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            ex.printStackTrace();
+        }
     }
 }
