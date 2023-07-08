@@ -40,7 +40,6 @@ public class ArmorStandWrapper {
     /* MetaData
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
     @Getter private String displayName;
-
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
 
@@ -52,7 +51,6 @@ public class ArmorStandWrapper {
     }
 
     @Getter private boolean small;
-
     public void setSmall(boolean small) {
         this.small = small;
 
@@ -64,7 +62,6 @@ public class ArmorStandWrapper {
     }
 
     @Getter private boolean invisible;
-
     public void setInvisible(boolean invisible) {
         this.invisible = invisible;
 
@@ -76,7 +73,6 @@ public class ArmorStandWrapper {
     }
 
     @Getter private boolean customNameVisible;
-
     public void setCustomNameVisible(boolean customNameVisible) {
         this.customNameVisible = customNameVisible;
 
@@ -88,10 +84,9 @@ public class ArmorStandWrapper {
     }
 
     @Getter private boolean showArms;
-
     public void setShowArms(boolean showArms) {
         this.showArms = showArms;
-
+        
         try {
             nmsOtherUtil.EntityArmorStand_setShowArms().invoke(entityArmorStand, showArms);
         } catch (Exception ex) {
@@ -100,10 +95,9 @@ public class ArmorStandWrapper {
     }
 
     @Getter private boolean showBasePlate;
-
     public void setHideBasePlate(boolean showBasePlate) {
         this.showBasePlate = showBasePlate;
-
+        
         try {
             nmsOtherUtil.EntityArmorStand_setBasePlate().invoke(entityArmorStand, showBasePlate);
         } catch (Exception ex) {
@@ -119,8 +113,8 @@ public class ArmorStandWrapper {
             return new Vector3fWrapper(nmsOtherUtil.EntityArmorStand_headPose().get(entityArmorStand));
         } catch (Exception ex) {
             ex.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     public void setHeadPose(Vector3fWrapper headPose) {
@@ -212,12 +206,12 @@ public class ArmorStandWrapper {
 
     /* Equipment
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
-    private @Setter @Nullable ItemStack itemInMainHand;
-    private @Setter @Nullable ItemStack itemInOffHand;
-    private @Setter @Nullable ItemStack helmet;
-    private @Setter @Nullable ItemStack chestplate;
-    private @Setter @Nullable ItemStack leggings;
-    private @Setter @Nullable ItemStack boots;
+    @Setter private @Nullable ItemStack itemInMainHand;
+    @Setter private @Nullable ItemStack itemInOffHand;
+    @Setter private @Nullable ItemStack helmet;
+    @Setter private @Nullable ItemStack chestplate;
+    @Setter private @Nullable ItemStack leggings;
+    @Setter private @Nullable ItemStack boots;
 
     public void applyItemInMainHand(Player target) {
         if (itemInMainHand == null) return;
