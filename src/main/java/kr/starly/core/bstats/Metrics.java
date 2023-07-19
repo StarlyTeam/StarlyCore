@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 import javax.net.ssl.HttpsURLConnection;
 
-import kr.starly.core.StarlyCore;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -32,7 +31,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Metrics {
 
     private final Plugin plugin;
-
     private final MetricsBase metricsBase;
 
     /**
@@ -44,7 +42,6 @@ public class Metrics {
      */
     public Metrics(JavaPlugin plugin, int serviceId) {
         this.plugin = plugin;
-        // Get the config file
         File bStatsFolder = new File(plugin.getDataFolder().getParentFile(), "bStats");
         File configFile = new File(bStatsFolder, "config.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
@@ -54,7 +51,6 @@ public class Metrics {
             config.addDefault("logFailedRequests", false);
             config.addDefault("logSentData", false);
             config.addDefault("logResponseStatusText", false);
-            // Inform the server owners about bStats
             config
                     .options()
                     .header(
@@ -69,7 +65,6 @@ public class Metrics {
             } catch (IOException ignored) {
             }
         }
-        // Load the data
         boolean enabled = config.getBoolean("enabled", true);
         String serverUUID = config.getString("serverUuid");
         boolean logErrors = config.getBoolean("logFailedRequests", false);
@@ -91,8 +86,6 @@ public class Metrics {
                         logSentData,
                         logResponseStatusText);
 
-
-        // Custom Chart
         addCustomChart(new SimplePie("IP", () -> {
             try (Scanner scanner = new Scanner(new URL("https://ident.me/").openStream(), "UTF-8").useDelimiter("\\A")) {
                 return scanner.next();
@@ -129,15 +122,11 @@ public class Metrics {
 
     private int getPlayerAmount() {
         try {
-            // Around MC 1.8 the return type was changed from an array to a collection,
-            // This fixes java.lang.NoSuchMethodError:
-            // org.bukkit.Bukkit.getOnlinePlayers()Ljava/util/Collection;
             Method onlinePlayersMethod = Class.forName("org.bukkit.Server").getMethod("getOnlinePlayers");
             return onlinePlayersMethod.getReturnType().equals(Collection.class)
                     ? ((Collection<?>) onlinePlayersMethod.invoke(Bukkit.getServer())).size()
                     : ((Player[]) onlinePlayersMethod.invoke(Bukkit.getServer())).length;
         } catch (Exception e) {
-            // Just use the new method if the reflection failed
             return Bukkit.getOnlinePlayers().size();
         }
     }

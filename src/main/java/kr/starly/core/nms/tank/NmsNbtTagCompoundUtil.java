@@ -12,7 +12,7 @@ public class NmsNbtTagCompoundUtil {
     private final Method getStringMethod;
     private final Method setStringMethod;
 
-    public NmsNbtTagCompoundUtil() throws NoSuchMethodException {
+    public NmsNbtTagCompoundUtil() {
         NmsOtherUtil nmsOtherUtil = NmsOtherUtil.getInstance();
 
         NBTTagCompoundClass = nmsOtherUtil.NBTTagCompound();
