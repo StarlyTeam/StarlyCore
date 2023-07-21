@@ -10,7 +10,7 @@ version = '2.0'
 
 repositories {
     mavenCentral()
-    maven { url = "http://starly.kr:8083/repository/maven-public/"; allowInsecureProtocol = true }
+    maven { url = "https://repo.starly.kr/repository/maven-public/" }
 }
 
 dependencies {
@@ -23,7 +23,6 @@ dependencies {
     api "com.google.code.gson:gson:2.10.1"
     api "org.reflections:reflections:0.10.2"
 
-
     compileOnly "org.spigotmc:spigot-api:R0.1:1.12.2"
     compileOnly fileTree(dir: "api/", includes: ["*.jar"])
 }
@@ -34,7 +33,7 @@ tasks.withType(JavaCompile).configureEach {
 
 shadowJar {
     archiveFileName = "StarlyCore.jar"
-    destinationDirectory = file("파일경로")
+    destinationDirectory = file("C:\\Users\\PC\\대영\\스탈리 스토어\\개발용 버킷\\1.20.1\\plugins")
 }
 
 publishing {

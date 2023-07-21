@@ -1801,7 +1801,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_19_R1", "u");
                     methodNameMap.put("v1_19_R2", "u");
                     methodNameMap.put("v1_19_R3", "u");
-                    methodNameMap.put("v1_20_R1", "u");
+                    methodNameMap.put("v1_20_R1", "v");
 
                     ItemStackGetTagMethod = ItemStack().getDeclaredMethod(methodNameMap.get(version.getVersion()));
                 } catch (NoSuchMethodException ex) {

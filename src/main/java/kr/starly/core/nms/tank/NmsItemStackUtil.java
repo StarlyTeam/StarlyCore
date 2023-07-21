@@ -73,11 +73,11 @@ public class NmsItemStackUtil {
      * @param itemStack Bukkit-API ItemStack
      * @return ItemStackWrapper
      */
-    public Object asNMSCopy(ItemStack itemStack) {
+    @Nullable
+    public ItemStackWrapper asNMSCopy(ItemStack itemStack) {
         try {
-            return nmsCopyMethod.invoke(null, itemStack);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return new ItemStackWrapper(nmsCopyMethod.invoke(null, itemStack), nmsItemSupport, this);
+        } catch (Exception e) {
             return null;
         }
     }
