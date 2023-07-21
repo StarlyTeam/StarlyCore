@@ -9,7 +9,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Test-Plugin" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/TestPlugin" />
+        <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
             <option value="$PROJECT_DIR$/TestPlugin" />
           </set>
         </option>
