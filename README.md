@@ -7,6 +7,8 @@
 ## StarlyCore
 StarlyCore is one of the essential cores responsible for managing the StarlyPlugin.
 
+</div>
+
 ## Contact
 Join us on DIscord Server:
 
@@ -18,6 +20,7 @@ Downloads can be obtained from the [downloads page](https://store.starly.kr) or 
 ## API
 
 ### Dependency Information
+
 Maven
 ```xml
 <repository>
