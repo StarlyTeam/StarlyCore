@@ -34,16 +34,8 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setName(String name) {
-        Preconditions.checkNotNull(name, "이름(name)은 null이 될 수 없습니다.");
+        Preconditions.checkNotNull(name, "The name cannot be null.");
         itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
-        return this;
-    }
-
-    public ItemBuilder setLore(String... lore) {
-        List<String> coloredLore = Arrays.stream(lore)
-                .map(line -> ChatColor.translateAlternateColorCodes('&', line))
-                .collect(Collectors.toList());
-        itemMeta.setLore(coloredLore);
         return this;
     }
 
@@ -55,14 +47,18 @@ public class ItemBuilder {
         return this;
     }
 
+    public ItemBuilder setLore(String... lore) {
+        return setLore(Arrays.asList(lore));
+    }
+
     public ItemBuilder setUnbreakable(boolean unbreakable) {
         itemMeta.setUnbreakable(unbreakable);
         return this;
     }
 
     public ItemBuilder addEnchantment(Enchantment enchantment, int level) {
-        Preconditions.checkArgument(enchantment != null, "마법 부여(enchantment)는 null이 될 수 없습니다.");
-        Preconditions.checkArgument(level >= 1, "마법 부여 레벨(level)은 1보다 작을 수 없습니다.");
+        Preconditions.checkArgument(enchantment != null, "Enchantment cannot be null.");
+        Preconditions.checkArgument(level >= 1, "Enchantment level cannot be less than 1.");
         itemMeta.addEnchant(enchantment, level, true);
         return this;
     }
@@ -73,8 +69,8 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setOwner(UUID owner) {
-        Preconditions.checkNotNull(owner, "소유자 UUID(owner)는 null이 될 수 없습니다.");
-        Preconditions.checkArgument(itemMeta instanceof SkullMeta, "ItemMeta는 SkullMeta의 인스턴스여야 합니다.");
+        Preconditions.checkNotNull(owner, "Owner UUID cannot be null.");
+        Preconditions.checkArgument(itemMeta instanceof SkullMeta, "ItemMeta must be an instance of SkullMeta.");
         OfflinePlayer player = Bukkit.getOfflinePlayer(owner);
         ((SkullMeta) itemMeta).setOwningPlayer(player);
         return this;
