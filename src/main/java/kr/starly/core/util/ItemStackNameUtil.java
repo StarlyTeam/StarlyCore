@@ -23,6 +23,7 @@ public class ItemStackNameUtil {
 
     private ItemStackNameUtil() {}
 
+    @Deprecated
     public static void initialize(JavaPlugin plugin) {
         String versionName = VersionController.getInstance().getVersion().getVersion();
         String numericPart = versionName.substring(1, 5);
