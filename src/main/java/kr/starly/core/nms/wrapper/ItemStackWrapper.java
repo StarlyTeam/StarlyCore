@@ -15,11 +15,6 @@ public class ItemStackWrapper {
     private NmsItemUtil itemSupport;
     private NmsItemStackUtil wrapper;
 
-    /**
-     * ItemStack 에 있는 NMSTagCompound 를 가져옵니다.
-     *
-     * @return NBTTagCompoundWrapper
-     */
     public NBTTagCompoundWrapper getTag() {
         try {
             Object obj = wrapper.getGetTagMethod().invoke(nmsItemStack);
@@ -31,11 +26,6 @@ public class ItemStackWrapper {
         }
     }
 
-    /**
-     * ItemStack 에 NBTTagCompound 를 설정합니다.
-     *
-     * @param tag NBTTagCompoundWrapper
-     */
     public void setTag(NBTTagCompoundWrapper tag) {
         try {
             wrapper.getSetTagMethod().invoke(nmsItemStack, tag.getNbtTagCompound());

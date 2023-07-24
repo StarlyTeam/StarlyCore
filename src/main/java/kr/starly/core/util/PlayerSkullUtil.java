@@ -27,9 +27,6 @@ public class PlayerSkullUtil {
 
     private PlayerSkullUtil() {}
 
-    /**
-     * 해당 함수를 호출하지마세요.
-     */
     @Deprecated
     public static void initialize(Version version, Server server) {
         highVersion = version.isHighVersion();
@@ -42,13 +39,6 @@ public class PlayerSkullUtil {
         return null;
     }
 
-    /**
-     * MCHeads 사이트에 있는 머리를 불러옵니다.
-     * https://minecraft-heads.com/custom-heads
-     *
-     * @param tempTag MCHeads 사이트 제일 아래있는 Minecraft-URL 값
-     * @return 머리 블럭 ( 지원하지 않는 버전일 시, STONE )
-     */
     public static ItemStack getCustomSkull(String tempTag) {
         ItemStack baseItem;
         try {
@@ -80,13 +70,6 @@ public class PlayerSkullUtil {
         } catch (Exception e) { return new ItemStack(Material.STONE); }
     }
 
-    /**
-     * 플레이어의 머리 블럭을 마인크래프트 스킨 서버에서 얻어옵니다.
-     * OfflinePlayer 의 경우 Async 환경에서 가져오는 것을 추천드립니다.
-     *
-     * @param targetUniqueId 유저의 UUID
-     * @return 머리 블럭 ( 지원하지 않는 버전일 시, STONE )
-     */
     public static ItemStack getPlayerSkull(UUID targetUniqueId) {
         String skinTag;
         if (skinTagMap.containsKey(targetUniqueId)) skinTag = skinTagMap.get(targetUniqueId);

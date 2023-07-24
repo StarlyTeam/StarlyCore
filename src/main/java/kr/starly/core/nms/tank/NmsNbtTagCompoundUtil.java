@@ -20,11 +20,6 @@ public class NmsNbtTagCompoundUtil {
         setStringMethod = nmsOtherUtil.NBTTagCompound_setString();
     }
 
-    /**
-     * NMS 의 NBTTagCompound 를 생성해줍니다.
-     *
-     * @return NBTTagCompoundWrapper
-     */
     public NBTTagCompoundWrapper newInstance() {
         try {
             return new NBTTagCompoundWrapper(NBTTagCompoundClass.newInstance(), this);
