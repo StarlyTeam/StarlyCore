@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://starly.kr">
-    <img src="https://media.discordapp.net/attachments/1038747909551816755/1133168588182790144/signiture.png">
+    <img src="https://file.starly.kr/images/logo/StarlyStore%20v1/SIGNATURE.png" alt="banner">
 </a>
 
 ## StarlyCore
@@ -38,14 +38,14 @@ Maven
 ```
 
 Gradle
-```kotlin
+```groovy
 repositories {
     maven {
         url = "https://repo.starly.kr/repository/maven-public/"
     }
 }
 ```
-```kotlin
+```groovy
 dependencies {
     compileOnly "kr.starly.core:StarlyCore:{version}"
 }
