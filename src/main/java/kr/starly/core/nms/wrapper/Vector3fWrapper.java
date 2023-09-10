@@ -14,9 +14,9 @@ public class Vector3fWrapper {
         NmsOtherUtil nmsOtherUtil = NmsOtherUtil.getInstance();
 
         try {
-            x = (float) nmsOtherUtil.Vector3f_getX().invoke(vector3f);
-            y = (float) nmsOtherUtil.Vector3f_getY().invoke(vector3f);
-            z = (float) nmsOtherUtil.Vector3f_getZ().invoke(vector3f);
+            this.x = (float) nmsOtherUtil.Vector3f_getX().invoke(vector3f);
+            this.y = (float) nmsOtherUtil.Vector3f_getY().invoke(vector3f);
+            this.z = (float) nmsOtherUtil.Vector3f_getZ().invoke(vector3f);
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new IllegalArgumentException("Invalid vector3f object");

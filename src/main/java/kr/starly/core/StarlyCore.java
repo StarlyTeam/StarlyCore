@@ -6,9 +6,10 @@ import kr.starly.core.util.PlayerSkullUtil;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@Getter
 public class StarlyCore extends JavaPlugin {
 
-    @Getter private static StarlyCore instance;
+    private static StarlyCore instance;
 
     @Override
     public void onLoad() {
@@ -20,10 +21,5 @@ public class StarlyCore extends JavaPlugin {
         VersionController.initialize(this);
         PlayerSkullUtil.initialize(VersionController.getInstance().getVersion(), getServer());
         ItemStackNameUtil.initialize(this);
-
-        /* 스탈리 플러그인 사이트 제작 시 구현
-        new UpdateChecker(this, 12345).getVersion(version -> {
-        });
-         */
     }
 }

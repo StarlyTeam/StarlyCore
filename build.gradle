@@ -22,6 +22,7 @@ dependencies {
     api "commons-io:commons-io:2.11.0"
     api "com.google.code.gson:gson:2.10.1"
     api "org.reflections:reflections:0.10.2"
+    api "org.json:json:20230618"
 
     compileOnly "org.spigotmc:spigot-api:R0.1:1.12.2"
     compileOnly fileTree(dir: "api/", includes: ["*.jar"])
@@ -33,7 +34,7 @@ tasks.withType(JavaCompile).configureEach {
 
 shadowJar {
     archiveFileName = "StarlyCore.jar"
-    destinationDirectory = file("C:\\Users\\PC\\대영\\스탈리 스토어\\개발용 버킷\\1.20.1\\plugins")
+    destinationDirectory = file("파일위치")
 }
 
 publishing {
