@@ -6,6 +6,7 @@ import kr.starly.core.nms.wrapper.ArmorStandWrapper;
 import kr.starly.core.nms.wrapper.WorldWrapper;
 import kr.starly.core.util.FeatherLocation;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
@@ -415,6 +416,42 @@ public class NmsOtherUtil {
             }
         }
         return getDataWatcherAtEntity;
+    }
+
+    /**
+     * Entity#setNoGravity
+     */
+    private Method setNoGravityAtEntity;
+    public Method Entity_setNoGravity() {
+        if (setNoGravityAtEntity == null) {
+            try {
+                setNoGravityAtEntity = Entity().getMethod("setNoGravity");
+            } catch (NoSuchMethodException ignored) {
+                try {
+                    Map<String, String> methodNameMap = new HashMap<>();
+                    methodNameMap.put("v1_12_R1", "d");
+                    methodNameMap.put("v1_13_R1", "d");
+                    methodNameMap.put("v1_13_R2", "d");
+                    methodNameMap.put("v1_14_R1", "d");
+                    methodNameMap.put("v1_15_R1", "d");
+                    methodNameMap.put("v1_16_R1", "e");
+                    methodNameMap.put("v1_16_R2", "e");
+                    methodNameMap.put("v1_16_R3", "e");
+                    methodNameMap.put("v1_17_R1", "e");
+                    methodNameMap.put("v1_18_R1", "e");
+                    methodNameMap.put("v1_18_R2", "e");
+                    methodNameMap.put("v1_19_R1", "e");
+                    methodNameMap.put("v1_19_R2", "e");
+                    methodNameMap.put("v1_19_R3", "e");
+                    methodNameMap.put("v1_20_R1", "e");
+
+                    setNoGravityAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()));
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return setNoGravityAtEntity;
     }
 
     /**
@@ -1942,30 +1979,32 @@ public Field EntityArmorStand_rightLegPose() {
      */
     private Method getDescriptionIdAtItem;
     public Method Item_getDescriptionId() {
-        try {
-            getDescriptionIdAtItem = ItemClass.getMethod("getDescriptionId", ItemStack());
-        } catch (NoSuchMethodException ignored) {
+        if (getDescriptionIdAtItem == null) {
             try {
-                Map<String, String> methodNameMap = new HashMap<>();
-                methodNameMap.put("v1_12_R1", "j");
-                methodNameMap.put("v1_13_R2", "h");
-                methodNameMap.put("v1_14_R1", "f");
-                methodNameMap.put("v1_15_R1", "f");
-                methodNameMap.put("v1_16_R1", "f");
-                methodNameMap.put("v1_16_R2", "f");
-                methodNameMap.put("v1_16_R3", "f");
-                methodNameMap.put("v1_17_R1", "j");
-                methodNameMap.put("v1_18_R1", "j");
-                methodNameMap.put("v1_18_R2", "j");
-                methodNameMap.put("v1_19_R1", "j");
-                methodNameMap.put("v1_19_R2", "j");
-                methodNameMap.put("v1_19_R3", "j");
-                methodNameMap.put("v1_20_R1", "j");
+                getDescriptionIdAtItem = Item().getMethod("getDescriptionId", ItemStack());
+            } catch (NoSuchMethodException ignored) {
+                try {
+                    Map<String, String> methodNameMap = new HashMap<>();
+                    methodNameMap.put("v1_12_R1", "j");
+                    methodNameMap.put("v1_13_R2", "h");
+                    methodNameMap.put("v1_14_R1", "f");
+                    methodNameMap.put("v1_15_R1", "f");
+                    methodNameMap.put("v1_16_R1", "f");
+                    methodNameMap.put("v1_16_R2", "f");
+                    methodNameMap.put("v1_16_R3", "f");
+                    methodNameMap.put("v1_17_R1", "j");
+                    methodNameMap.put("v1_18_R1", "j");
+                    methodNameMap.put("v1_18_R2", "j");
+                    methodNameMap.put("v1_19_R1", "j");
+                    methodNameMap.put("v1_19_R2", "j");
+                    methodNameMap.put("v1_19_R3", "j");
+                    methodNameMap.put("v1_20_R1", "j");
 
-                getDescriptionIdAtItem = ItemClass.getMethod(methodNameMap.get(version.getVersion()), ItemStack());
-            } catch (NoSuchMethodException ex) {
+                    getDescriptionIdAtItem = Item().getMethod(methodNameMap.get(version.getVersion()), ItemStack());
+                } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }
+            }
         }
         return getDescriptionIdAtItem;
     }
@@ -1975,33 +2014,103 @@ public Field EntityArmorStand_rightLegPose() {
      */
     private Method useAtItem;
     public Method Item_use() {
-        try {
-            useAtItem = ItemClass.getMethod("use", World(), EntityHuman(), EnumHand());
-        } catch (NoSuchMethodException ignored) {
+        if (useAtItem == null) {
             try {
-                Map<String, String> methodNameMap = new HashMap<>();
-                methodNameMap.put("v1_12_R1", "a");
-                methodNameMap.put("v1_13_R1", "a");
-                methodNameMap.put("v1_13_R2", "a");
-                methodNameMap.put("v1_14_R1", "a");
-                methodNameMap.put("v1_15_R1", "a");
-                methodNameMap.put("v1_16_R1", "a");
-                methodNameMap.put("v1_16_R2", "a");
-                methodNameMap.put("v1_16_R3", "a");
-                methodNameMap.put("v1_17_R1", "a");
-                methodNameMap.put("v1_18_R1", "a");
-                methodNameMap.put("v1_18_R2", "a");
-                methodNameMap.put("v1_19_R1", "a");
-                methodNameMap.put("v1_19_R2", "a");
-                methodNameMap.put("v1_19_R3", "a");
-                methodNameMap.put("v1_20_R1", "a");
+                useAtItem = Item().getMethod("use", World(), EntityHuman(), EnumHand());
+            } catch (NoSuchMethodException ignored) {
+                try {
+                    Map<String, String> methodNameMap = new HashMap<>();
+                    methodNameMap.put("v1_12_R1", "a");
+                    methodNameMap.put("v1_13_R1", "a");
+                    methodNameMap.put("v1_13_R2", "a");
+                    methodNameMap.put("v1_14_R1", "a");
+                    methodNameMap.put("v1_15_R1", "a");
+                    methodNameMap.put("v1_16_R1", "a");
+                    methodNameMap.put("v1_16_R2", "a");
+                    methodNameMap.put("v1_16_R3", "a");
+                    methodNameMap.put("v1_17_R1", "a");
+                    methodNameMap.put("v1_18_R1", "a");
+                    methodNameMap.put("v1_18_R2", "a");
+                    methodNameMap.put("v1_19_R1", "a");
+                    methodNameMap.put("v1_19_R2", "a");
+                    methodNameMap.put("v1_19_R3", "a");
+                    methodNameMap.put("v1_20_R1", "a");
 
-                useAtItem = ItemClass.getMethod(methodNameMap.get(version.getVersion()), World(), EntityHuman(), EnumHand());
-            } catch (NoSuchMethodException ex) {
+                    useAtItem = Item().getMethod(methodNameMap.get(version.getVersion()), World(), EntityHuman(), EnumHand());
+                } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }
+            }
         }
         return useAtItem;
+    }
+
+    /**
+     * EntityItem
+     */
+    private Class<?> EntityItem;
+    public Class<?> EntityItem() {
+        if (EntityItem == null) {
+            try {
+                EntityItem = Class.forName(nmsPackage + ".EntityItem");
+            } catch (Exception ignored) {
+                try {
+                    EntityItem = Class.forName("net.minecraft.world.entity.item.EntityItem");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return EntityItem;
+    }
+
+    /**
+     * EntityItem(World, double, double, ItemStack)
+     */
+    private Constructor EntityItemConstructor;
+    public Constructor EntityItem_Constructor() {
+        if (EntityItemConstructor == null) {
+            try {
+                EntityItemConstructor = EntityItem().getConstructor(World(), double.class, double.class, double.class, ItemStack());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return EntityItemConstructor;
+    }
+
+    /**
+     * EntityItem#setNeverPickUp()
+     */
+    private Method setNeverPickUpAtEntityItem;
+    public Method EntityItem_setNeverPickUp() {
+        if (setNeverPickUpAtEntityItem == null) {
+            try {
+                useAtItem = EntityItem().getMethod("setNeverPickUp", boolean.class);
+            } catch (NoSuchMethodException ignored) {
+                try {
+                    Map<String, String> methodNameMap = new HashMap<>();
+                    methodNameMap.put("v1_14_R1", "p");
+                    methodNameMap.put("v1_15_R1", "o");
+                    methodNameMap.put("v1_16_R1", "o");
+                    methodNameMap.put("v1_16_R2", "o");
+                    methodNameMap.put("v1_16_R3", "o");
+                    methodNameMap.put("v1_17_R1", "p");
+                    methodNameMap.put("v1_18_R1", "q");
+                    methodNameMap.put("v1_18_R2", "q");
+                    methodNameMap.put("v1_19_R1", "q");
+                    methodNameMap.put("v1_19_R2", "q");
+                    methodNameMap.put("v1_19_R3", "q");
+                    methodNameMap.put("v1_20_R1", "q");
+
+                    String methodName = methodNameMap.get(version.getVersion());
+                    if (methodName != null) useAtItem = EntityItem().getMethod(methodName, boolean.class);
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return setNeverPickUpAtEntityItem;
     }
 
 
@@ -2060,8 +2169,8 @@ public Field EntityArmorStand_rightLegPose() {
                     try {
                         PacketPlayOutEntityEquipmentConstructor = Class.forName("net.minecraft.network.protocol.game.PacketPlayOutEntityEquipment").getConstructor(int.class, List.class);
                     } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                        ex.printStackTrace();
+                    }
                 }
             }
         }
@@ -2125,9 +2234,18 @@ public Field EntityArmorStand_rightLegPose() {
         }
     }
 
+    public WorldWrapper toNMSWorld(World world) {
+        try {
+            return new WorldWrapper(world, CraftWorld_getHandle().invoke(CraftWorld().cast(world)));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public FeatherLocation toFeatherLocation(Location location) {
         try {
-            WorldWrapper worldWrapper = new WorldWrapper(location.getWorld(), CraftWorld_getHandle().invoke(CraftWorld().cast(location.getWorld())));
+            WorldWrapper worldWrapper = toNMSWorld(location.getWorld());
             return new FeatherLocation(worldWrapper, location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
         } catch (Exception ex) {
             ex.printStackTrace();
