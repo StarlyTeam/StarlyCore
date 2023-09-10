@@ -2086,7 +2086,7 @@ public Field EntityArmorStand_rightLegPose() {
     public Method EntityItem_setNeverPickUp() {
         if (setNeverPickUpAtEntityItem == null) {
             try {
-                useAtItem = EntityItem().getMethod("setNeverPickUp", boolean.class);
+                useAtItem = EntityItem().getMethod("setNeverPickUp");
             } catch (NoSuchMethodException ignored) {
                 try {
                     Map<String, String> methodNameMap = new HashMap<>();
@@ -2104,7 +2104,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_20_R1", "q");
 
                     String methodName = methodNameMap.get(version.getVersion());
-                    if (methodName != null) useAtItem = EntityItem().getMethod(methodName, boolean.class);
+                    if (methodName != null) useAtItem = EntityItem().getMethod(methodName);
                 } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }

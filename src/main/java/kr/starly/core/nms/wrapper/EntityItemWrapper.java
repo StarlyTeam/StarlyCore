@@ -43,6 +43,13 @@ public class EntityItemWrapper {
         }
     }
 
+    public void setNeverPickUp() {
+        try {
+            nmsOtherUtil.EntityItem_setNeverPickUp().invoke(entityItem, true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
 
     /* Others
