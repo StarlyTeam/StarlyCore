@@ -3,11 +3,13 @@ package kr.starly.core.nms.tank;
 import kr.starly.core.nms.version.Version;
 import kr.starly.core.nms.version.VersionController;
 import kr.starly.core.nms.wrapper.ArmorStandWrapper;
+import kr.starly.core.nms.wrapper.EntityItemWrapper;
 import kr.starly.core.nms.wrapper.WorldWrapper;
 import kr.starly.core.util.FeatherLocation;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -425,7 +427,7 @@ public class NmsOtherUtil {
     public Method Entity_setNoGravity() {
         if (setNoGravityAtEntity == null) {
             try {
-                setNoGravityAtEntity = Entity().getMethod("setNoGravity");
+                setNoGravityAtEntity = Entity().getMethod("setNoGravity", boolean.class);
             } catch (NoSuchMethodException ignored) {
                 try {
                     Map<String, String> methodNameMap = new HashMap<>();
@@ -445,7 +447,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "e");
                     methodNameMap.put("v1_20_R1", "e");
 
-                    setNoGravityAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()));
+                    setNoGravityAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
                 } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }
@@ -2065,7 +2067,7 @@ public Field EntityArmorStand_rightLegPose() {
     }
 
     /**
-     * EntityItem(World, double, double, ItemStack)
+     * EntityItem#EntityItem(World, double, double, ItemStack)
      */
     private Constructor EntityItemConstructor;
     public Constructor EntityItem_Constructor() {
@@ -2077,40 +2079,6 @@ public Field EntityArmorStand_rightLegPose() {
             }
         }
         return EntityItemConstructor;
-    }
-
-    /**
-     * EntityItem#setNeverPickUp()
-     */
-    private Method setNeverPickUpAtEntityItem;
-    public Method EntityItem_setNeverPickUp() {
-        if (setNeverPickUpAtEntityItem == null) {
-            try {
-                useAtItem = EntityItem().getMethod("setNeverPickUp");
-            } catch (NoSuchMethodException ignored) {
-                try {
-                    Map<String, String> methodNameMap = new HashMap<>();
-                    methodNameMap.put("v1_14_R1", "p");
-                    methodNameMap.put("v1_15_R1", "o");
-                    methodNameMap.put("v1_16_R1", "o");
-                    methodNameMap.put("v1_16_R2", "o");
-                    methodNameMap.put("v1_16_R3", "o");
-                    methodNameMap.put("v1_17_R1", "p");
-                    methodNameMap.put("v1_18_R1", "q");
-                    methodNameMap.put("v1_18_R2", "q");
-                    methodNameMap.put("v1_19_R1", "q");
-                    methodNameMap.put("v1_19_R2", "q");
-                    methodNameMap.put("v1_19_R3", "q");
-                    methodNameMap.put("v1_20_R1", "q");
-
-                    String methodName = methodNameMap.get(version.getVersion());
-                    if (methodName != null) useAtItem = EntityItem().getMethod(methodName);
-                } catch (NoSuchMethodException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-        return setNeverPickUpAtEntityItem;
     }
 
 
@@ -2228,6 +2196,23 @@ public Field EntityArmorStand_rightLegPose() {
             Object entityArmorStand = EntityArmorStand_Constructor().newInstance(featherLocation.getWorld().getWorld(), location.getX(), location.getY(), location.getZ());
             Object entityId = Entity_getId().invoke(entityArmorStand);
             return new ArmorStandWrapper(entityId == null ? 0 : (int) entityId, featherLocation, entityArmorStand);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public EntityItemWrapper createEntityItemWrapper(Location location, ItemStack itemStack) {
+        try {
+            FeatherLocation featherLocation = toFeatherLocation(location);
+            Object entityItem = EntityItem_Constructor()
+                    .newInstance(
+                            toNMSWorld(location.getWorld()).getWorld(),
+                            location.getX(), location.getY(), location.getZ(),
+                            NmsItemStackUtil.getInstance().asNMSCopy(itemStack).getNmsItemStack()
+                    );
+            Object entityId = Entity_getId().invoke(entityItem);
+            return new EntityItemWrapper(entityId == null ? 0 : (int) entityId, featherLocation, entityItem);
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
