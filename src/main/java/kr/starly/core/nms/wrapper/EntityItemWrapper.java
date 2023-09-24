@@ -1,10 +1,13 @@
 package kr.starly.core.nms.wrapper;
 
+import kr.starly.core.nms.tank.NmsItemStackUtil;
 import kr.starly.core.nms.tank.NmsOtherUtil;
 import kr.starly.core.util.FeatherLocation;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 @SuppressWarnings("unused")
 public class EntityItemWrapper {
@@ -31,11 +34,16 @@ public class EntityItemWrapper {
         }
     }
 
+    @Getter @Setter private ItemStack item;
 
     /* Others
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
     public void spawn(Player target) {
-        spawn(target, target.getLocation());
+        try {
+            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutSpawnEntity_Constructor(), entityItem);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void spawn(Player target, Location location) {
@@ -43,8 +51,7 @@ public class EntityItemWrapper {
             nmsOtherUtil.Entity_setLocation().invoke(entityItem, location.getX(), location.getY(), location.getZ());
             nmsOtherUtil.Entity_setYawPitch().invoke(entityItem, location.getYaw(), location.getPitch());
 
-            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutSpawnEntity_Constructor(), entityItem);
-            applyMeta(target);
+            spawn(target);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -52,7 +59,7 @@ public class EntityItemWrapper {
 
     public void remove(Player target) {
         try {
-            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityDestroy_Constructor(), new int[]{id});
+            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityDestroy_Constructor(), (Object) new int[]{id});
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -67,7 +74,17 @@ public class EntityItemWrapper {
             this.location = nmsOtherUtil.toFeatherLocation(location);
             nmsOtherUtil.Entity_setLocation().invoke(entityItem, location.getX(), location.getY(), location.getZ());
             nmsOtherUtil.Entity_setYawPitch().invoke(entityItem, location.getYaw(), location.getPitch());
+
             nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityTeleport_Constructor(), entityItem);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void applyItem() {
+        try {
+            Object nmsItemStack = NmsItemStackUtil.getInstance().asNMSCopy(item).getNmsItemStack();
+            nmsOtherUtil.EntityItem_setItem().invoke(entityItem, nmsItemStack);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
