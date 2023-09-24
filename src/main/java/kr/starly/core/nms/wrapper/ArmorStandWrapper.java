@@ -239,6 +239,7 @@ public class ArmorStandWrapper {
         try {
             Object enumItemSlot = nmsOtherUtil.EnumItemSlot_MAINHAND();
             Object[] args = createEquipmentArgs(enumItemSlot, itemInMainHand);
+
             nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -250,6 +251,7 @@ public class ArmorStandWrapper {
         try {
             Object enumItemSlot = nmsOtherUtil.EnumItemSlot_OFFHAND();
             Object[] args = createEquipmentArgs(enumItemSlot, itemInOffHand);
+
             nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -261,6 +263,7 @@ public class ArmorStandWrapper {
         try {
             Object enumItemSlot = nmsOtherUtil.EnumItemSlot_HEAD();
             Object[] args = createEquipmentArgs(enumItemSlot, helmet);
+
             nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -272,6 +275,7 @@ public class ArmorStandWrapper {
         try {
             Object enumItemSlot = nmsOtherUtil.EnumItemSlot_CHEST();
             Object[] args = createEquipmentArgs(enumItemSlot, chestplate);
+
             nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -283,6 +287,7 @@ public class ArmorStandWrapper {
         try {
             Object enumItemSlot = nmsOtherUtil.EnumItemSlot_LEGS();
             Object[] args = createEquipmentArgs(enumItemSlot, leggings);
+
             nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -294,6 +299,7 @@ public class ArmorStandWrapper {
         try {
             Object enumItemSlot = nmsOtherUtil.EnumItemSlot_FEET();
             Object[] args = createEquipmentArgs(enumItemSlot, boots);
+
             nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityEquipment_Constructor(), args);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -304,7 +310,11 @@ public class ArmorStandWrapper {
     /* Others
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
     public void spawn(Player target) {
-        spawn(target, target.getLocation());
+        try {
+            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutSpawnEntity_Constructor(), entityArmorStand);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void spawn(Player target, Location location) {
@@ -312,7 +322,7 @@ public class ArmorStandWrapper {
             nmsOtherUtil.Entity_setLocation().invoke(entityArmorStand, location.getX(), location.getY(), location.getZ());
             nmsOtherUtil.Entity_setYawPitch().invoke(entityArmorStand, location.getYaw(), location.getPitch());
 
-            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutSpawnEntity_Constructor(), entityArmorStand);
+            spawn(target);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -335,6 +345,7 @@ public class ArmorStandWrapper {
             FeatherLocation featherLocation = nmsOtherUtil.toFeatherLocation(location);
             nmsOtherUtil.Entity_setLocation().invoke(entityArmorStand, location.getX(), location.getY(), location.getZ());
             nmsOtherUtil.Entity_setYawPitch().invoke(entityArmorStand, location.getYaw(), location.getPitch());
+
             nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityTeleport_Constructor(), entityArmorStand);
             if (savePose) defaultHeadPose = nmsOtherUtil.EntityArmorStand_getHeadPose().invoke(entityArmorStand);
         } catch (Exception ex) {
