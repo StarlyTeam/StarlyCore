@@ -83,6 +83,17 @@ public class ArmorStandWrapper {
         }
     }
 
+    @Getter private boolean marker;
+    public void setMarker(boolean marker) {
+        this.marker = marker;
+
+        try {
+            nmsOtherUtil.EntityArmorStand_setMarker().invoke(entityArmorStand, marker);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     @Getter private boolean showArms;
     public void setShowArms(boolean showArms) {
         this.showArms = showArms;
@@ -127,6 +138,16 @@ public class ArmorStandWrapper {
 
     public void resetHeadPose() {
         setHeadPose(new Vector3fWrapper(defaultHeadPose));
+    }
+
+    float headYaw;
+    public void setHeadYaw(float yaw) {
+        headYaw = yaw;
+        try {
+            nmsOtherUtil.EntityArmorStand_setHeadYaw().invoke(entityArmorStand, yaw);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 

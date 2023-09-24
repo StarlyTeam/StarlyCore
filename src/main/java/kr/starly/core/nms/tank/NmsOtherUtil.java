@@ -8,6 +8,7 @@ import kr.starly.core.nms.wrapper.WorldWrapper;
 import kr.starly.core.util.FeatherLocation;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -238,6 +239,19 @@ public class NmsOtherUtil {
             }
         }
         return EntityClass;
+    }
+
+    private Method BukkitEntityClass;
+    public Method BukkitEntity() {
+        if (BukkitEntityClass == null) {
+            try {
+                BukkitEntityClass = Entity().getDeclaredMethod("getBukkitEntity");
+                BukkitEntityClass.setAccessible(true);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return BukkitEntityClass;
     }
 
     /**
@@ -766,6 +780,42 @@ public class NmsOtherUtil {
             }
         }
         return setMarkerAtEntityArmorStand;
+    }
+
+    /**
+     * EntityArmorStand#setHeadYaw(float)
+     */
+    private Method setHeadYawAtEntityArmorStand;
+    public Method EntityArmorStand_setHeadYaw() {
+        if (setHeadYawAtEntityArmorStand == null) {
+            try {
+                setHeadYawAtEntityArmorStand = EntityArmorStand().getMethod("setHeadRotation", Vector3f());
+            } catch (NoSuchMethodException ignored) {
+                try {
+                    Map<String, String> methodNameMap = new HashMap<>();
+                    methodNameMap.put("v1_12_R1", "g");
+                    methodNameMap.put("v1_13_R1", "j");
+                    methodNameMap.put("v1_13_R2", "j");
+                    methodNameMap.put("v1_14_R1", "k");
+                    methodNameMap.put("v1_15_R1", "k");
+                    methodNameMap.put("v1_16_R1", "k");
+                    methodNameMap.put("v1_16_R2", "k");
+                    methodNameMap.put("v1_16_R3", "m");
+                    methodNameMap.put("v1_17_R1", "l");
+                    methodNameMap.put("v1_18_R1", "l");
+                    methodNameMap.put("v1_18_R2", "l");
+                    methodNameMap.put("v1_19_R1", "l");
+                    methodNameMap.put("v1_19_R2", "l");
+                    methodNameMap.put("v1_19_R3", "r");
+                    methodNameMap.put("v1_20_R1", "n");
+
+                    setHeadYawAtEntityArmorStand = EntityArmorStand().getMethod(methodNameMap.get(version.getVersion()), float.class);
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return setHeadYawAtEntityArmorStand;
     }
 
     /**
@@ -2187,6 +2237,28 @@ public Field EntityArmorStand_rightLegPose() {
         return PacketPlayOutEntityMetadataConstructor;
     }
 
+    /* ENTITY
+     ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    private Method addPassengerMethod;
+    public Method addPassengerMethod() {
+        if (addPassengerMethod == null) {
+            try {
+                addPassengerMethod = Entity.class.getMethod("addPassenger", Entity.class);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return addPassengerMethod;
+    }
+
+    public void addPassenger(Player target, Object passengerEntity) {
+        try {
+            Object passengerBukkitEntity = BukkitEntity().invoke(passengerEntity);
+            addPassengerMethod().invoke(target, passengerBukkitEntity);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /* UTIL
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
