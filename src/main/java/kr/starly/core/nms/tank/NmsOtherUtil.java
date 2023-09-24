@@ -2196,6 +2196,25 @@ public Field EntityArmorStand_rightLegPose() {
     }
 
     /**
+     * PacketPlayOutEntityHeadRotation
+     */
+    private Constructor<?> PacketPlayOutEntityHeadRotationConstructor;
+    public Constructor<?> PacketPlayOutEntityHeadRotation_Constructor() {
+        if (PacketPlayOutEntityHeadRotationConstructor == null) {
+            try {
+                PacketPlayOutEntityHeadRotationConstructor = Class.forName(nmsPackage + ".PacketPlayOutEntityHeadRotation").getConstructor(Entity(), byte.class);
+            } catch (Exception e) {
+                try {
+                    PacketPlayOutEntityHeadRotationConstructor = Class.forName("net.minecraft.network.protocol.game.PacketPlayOutEntityHeadRotation").getConstructor(Entity(), byte.class);
+                } catch (Exception ex) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return PacketPlayOutEntityHeadRotationConstructor;
+    }
+
+    /**
      * PacketPlayOutEntityTeleport
      */
     private Constructor<?> PacketPlayOutEntityTeleportConstructor;

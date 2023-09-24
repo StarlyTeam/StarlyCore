@@ -386,4 +386,13 @@ public class ArmorStandWrapper {
             }
         }
     }
+
+    public void sendHeadRotationPacket(Player target) {
+        try {
+            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityHeadRotation_Constructor(),
+                    entityArmorStand, (byte) headYaw);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
