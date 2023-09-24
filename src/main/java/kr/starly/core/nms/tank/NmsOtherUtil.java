@@ -554,13 +554,9 @@ public class NmsOtherUtil {
     public Constructor<?> EntityArmorStand_Constructor() {
         if (EntityArmorStandConstructor == null) {
             try {
-                EntityArmorStandConstructor = Class.forName(nmsPackage + ".EntityArmorStand").getConstructor(World(), double.class, double.class, double.class);
-            } catch (Exception ignored) {
-                try {
-                    EntityArmorStandConstructor = Class.forName("net.minecraft.world.entity.decoration.EntityArmorStand").getConstructor(World(), double.class, double.class, double.class);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                EntityArmorStandConstructor = EntityArmorStand().getConstructor(World(), double.class, double.class, double.class);
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
         return EntityArmorStandConstructor;
@@ -2100,20 +2096,20 @@ public Field EntityArmorStand_rightLegPose() {
     /**
      * EntityItem
      */
-    private Class<?> EntityItem;
+    private Class<?> EntityItemClass;
     public Class<?> EntityItem() {
-        if (EntityItem == null) {
+        if (EntityItemClass == null) {
             try {
-                EntityItem = Class.forName(nmsPackage + ".EntityItem");
+                EntityItemClass = Class.forName(nmsPackage + ".EntityItem");
             } catch (Exception ignored) {
                 try {
-                    EntityItem = Class.forName("net.minecraft.world.entity.item.EntityItem");
+                    EntityItemClass = Class.forName("net.minecraft.world.entity.item.EntityItem");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         }
-        return EntityItem;
+        return EntityItemClass;
     }
 
     /**
@@ -2131,6 +2127,41 @@ public Field EntityArmorStand_rightLegPose() {
         return EntityItemConstructor;
     }
 
+    /**
+     * EntityItem#setItem(ItemStack)
+     */
+    private Method setItemAtEntityItem;
+    public Method EntityItem_setItem() {
+        if (setItemAtEntityItem == null) {
+            try {
+                setItemAtEntityItem = EntityItem().getMethod("setItem", ItemStack());
+            } catch (NoSuchMethodException ignored) {
+                try {
+                    Map<String, String> methodNameMap = new HashMap<>();
+                    methodNameMap.put("v1_12_R1", "a");
+                    methodNameMap.put("v1_13_R1", "b");
+                    methodNameMap.put("v1_13_R2", "b");
+                    methodNameMap.put("v1_14_R1", "b");
+                    methodNameMap.put("v1_15_R1", "b");
+                    methodNameMap.put("v1_16_R1", "b");
+                    methodNameMap.put("v1_16_R2", "b");
+                    methodNameMap.put("v1_16_R3", "b");
+                    methodNameMap.put("v1_17_R1", "a");
+                    methodNameMap.put("v1_18_R1", "a");
+                    methodNameMap.put("v1_18_R2", "a");
+                    methodNameMap.put("v1_19_R1", "a");
+                    methodNameMap.put("v1_19_R2", "a");
+                    methodNameMap.put("v1_19_R3", "a");
+                    methodNameMap.put("v1_20_R1", "a");
+
+                    setItemAtEntityItem = EntityItem().getMethod(methodNameMap.get(version.getVersion()), ItemStack());
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return setItemAtEntityItem;
+    }
 
     /* PACKET - IMPL
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
@@ -2141,7 +2172,7 @@ public Field EntityArmorStand_rightLegPose() {
     public Constructor<?> PacketPlayOutSpawnEntity_Constructor() {
         if (PacketPlayOutSpawnEntityConstructor == null) {
             try {
-                PacketPlayOutSpawnEntityConstructor = Class.forName(nmsPackage + ".PacketPlayOutSpawnEntity").getConstructor(EntityLiving());
+                PacketPlayOutSpawnEntityConstructor = Class.forName(nmsPackage + ".PacketPlayOutSpawnEntity").getConstructor(Entity());
             } catch (Exception ignored) {
                 try {
                     PacketPlayOutSpawnEntityConstructor = Class.forName("net.minecraft.network.protocol.game.PacketPlayOutSpawnEntity").getConstructor(Entity());
