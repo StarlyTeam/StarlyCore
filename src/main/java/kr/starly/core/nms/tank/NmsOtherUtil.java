@@ -2315,7 +2315,11 @@ public Field EntityArmorStand_rightLegPose() {
     public ArmorStandWrapper createArmorStandWrapper(Location location) {
         try {
             FeatherLocation featherLocation = toFeatherLocation(location);
-            Object entityArmorStand = EntityArmorStand_Constructor().newInstance(featherLocation.getWorld().getWorld(), location.getX(), location.getY(), location.getZ());
+            Object entityArmorStand = EntityArmorStand_Constructor()
+                    .newInstance(
+                            featherLocation.getWorld().getWorld(),
+                            location.getX(), location.getY(), location.getZ()
+                    );
             Object entityId = Entity_getId().invoke(entityArmorStand);
             return new ArmorStandWrapper(entityId == null ? 0 : (int) entityId, featherLocation, entityArmorStand);
         } catch (Exception ex) {
@@ -2329,11 +2333,12 @@ public Field EntityArmorStand_rightLegPose() {
             FeatherLocation featherLocation = toFeatherLocation(location);
             Object entityItem = EntityItem_Constructor()
                     .newInstance(
-                            toNMSWorld(location.getWorld()).getWorld(),
+                            featherLocation.getWorld().getWorld(),
                             location.getX(), location.getY(), location.getZ(),
                             NmsItemStackUtil.getInstance().asNMSCopy(itemStack).getNmsItemStack()
                     );
             Object entityId = Entity_getId().invoke(entityItem);
+
             return new EntityItemWrapper(entityId == null ? 0 : (int) entityId, featherLocation, entityItem);
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -39,11 +39,7 @@ public class EntityItemWrapper {
     /* Others
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
     public void spawn(Player target) {
-        try {
-            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutSpawnEntity_Constructor(), entityItem);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        spawn(target, location.toLocation());
     }
 
     public void spawn(Player target, Location location) {
@@ -51,7 +47,8 @@ public class EntityItemWrapper {
             nmsOtherUtil.Entity_setLocation().invoke(entityItem, location.getX(), location.getY(), location.getZ());
             nmsOtherUtil.Entity_setYawPitch().invoke(entityItem, location.getYaw(), location.getPitch());
 
-            spawn(target);
+            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutSpawnEntity_Constructor(), entityItem);
+            applyMeta(target);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

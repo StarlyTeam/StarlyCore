@@ -310,11 +310,7 @@ public class ArmorStandWrapper {
     /* Others
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
     public void spawn(Player target) {
-        try {
-            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutSpawnEntity_Constructor(), entityArmorStand);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        spawn(target, location.toLocation());
     }
 
     public void spawn(Player target, Location location) {
@@ -322,7 +318,8 @@ public class ArmorStandWrapper {
             nmsOtherUtil.Entity_setLocation().invoke(entityArmorStand, location.getX(), location.getY(), location.getZ());
             nmsOtherUtil.Entity_setYawPitch().invoke(entityArmorStand, location.getYaw(), location.getPitch());
 
-            spawn(target);
+            nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutSpawnEntity_Constructor(), entityArmorStand);
+            applyMeta(target);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
