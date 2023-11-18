@@ -66,7 +66,7 @@ public class ArmorStandWrapper {
         this.invisible = invisible;
 
         try {
-            nmsOtherUtil.EntityArmorStand_setInvisible().invoke(entityArmorStand, invisible);
+            nmsOtherUtil.Entity_setInvisible().invoke(entityArmorStand, invisible);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -77,7 +77,7 @@ public class ArmorStandWrapper {
         this.customNameVisible = customNameVisible;
 
         try {
-            nmsOtherUtil.EntityArmorStand_setCustomNameVisible().invoke(entityArmorStand, customNameVisible);
+            nmsOtherUtil.Entity_setCustomNameVisible().invoke(entityArmorStand, customNameVisible);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -106,11 +106,11 @@ public class ArmorStandWrapper {
     }
 
     @Getter private boolean showBasePlate;
-    public void setHideBasePlate(boolean showBasePlate) {
-        this.showBasePlate = showBasePlate;
+    public void setHideBasePlate(boolean hideBasePlate) {
+        this.showBasePlate = hideBasePlate;
         
         try {
-            nmsOtherUtil.EntityArmorStand_setBasePlate().invoke(entityArmorStand, showBasePlate);
+            nmsOtherUtil.EntityArmorStand_setNoBasePlate().invoke(entityArmorStand, hideBasePlate);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
