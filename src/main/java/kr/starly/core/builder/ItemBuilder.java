@@ -9,9 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ItemBuilder {
@@ -39,16 +37,31 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder setLore(List<String> lore) {
-        List<String> coloredLore = lore.stream()
-                .map(line -> ChatColor.translateAlternateColorCodes('&', line))
-                .collect(Collectors.toList());
-        itemMeta.setLore(coloredLore);
-        return this;
+    public String getName() {
+        return itemMeta.getDisplayName();
     }
 
     public ItemBuilder setLore(String... lore) {
         return setLore(Arrays.asList(lore));
+    }
+
+    public ItemBuilder setLore(List<String> lore) {
+        List<String> result = lore.stream()
+                .map(line -> ChatColor.translateAlternateColorCodes('&', line))
+                .collect(Collectors.toList());
+        itemMeta.setLore(result);
+        return this;
+    }
+
+    public ItemBuilder addLore(String... lore) {
+        List<String> result = new ArrayList<>(getLore());
+        result.addAll(Arrays.asList(lore));
+        setLore(result);
+        return this;
+    }
+
+    public List<String> getLore() {
+        return itemMeta.hasLore() ? Collections.emptyList() : itemMeta.getLore();
     }
 
     public ItemBuilder setUnbreakable(boolean unbreakable) {
@@ -56,18 +69,62 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder addEnchantment(Enchantment enchantment, int level) {
-        Preconditions.checkArgument(enchantment != null, "Enchantment cannot be null.");
-        Preconditions.checkArgument(level >= 1, "Enchantment level cannot be less than 1.");
-        itemMeta.addEnchant(enchantment, level, true);
+    public boolean isUnbreakable() {
+        return itemMeta.isUnbreakable();
+    }
+
+    public ItemBuilder addEnchant(Enchantment enchant, int level) {
+        itemMeta.addEnchant(enchant, level, true);
         return this;
     }
 
+    public boolean hasEnchant(Enchantment enchant) {
+        return itemMeta.hasEnchant(enchant);
+    }
+
+    public Map<Enchantment, Integer> getEnchants() {
+        return itemMeta.getEnchants();
+    }
+
+    public ItemBuilder addFlags(ItemFlag... flags) {
+        itemMeta.addItemFlags(flags);
+        return this;
+    }
+
+    public ItemBuilder removeFlags(ItemFlag... flags) {
+        itemMeta.removeItemFlags(flags);
+        return this;
+    }
+
+    public ItemBuilder setSkullOwner(UUID owner) {
+        Preconditions.checkNotNull(owner, "Owner UUID cannot be null.");
+        Preconditions.checkArgument(itemMeta instanceof SkullMeta, "ItemMeta must be an instance of SkullMeta.");
+
+        OfflinePlayer player = Bukkit.getOfflinePlayer(owner);
+        ((SkullMeta) itemMeta).setOwningPlayer(player);
+        return this;
+    }
+
+    public ItemBuilder setLeatherColor(Color color) {
+        Preconditions.checkArgument(itemMeta instanceof LeatherArmorMeta, "ItemMeta must be an instance of SkullMeta.");
+
+        ((LeatherArmorMeta) itemMeta).setColor(color);
+        return this;
+    }
+
+    public ItemStack build() {
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
+    // Deprecated [사용 자제]
+    @Deprecated
     public ItemBuilder hideAttributes() {
         itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         return this;
     }
 
+    @Deprecated
     public ItemBuilder setOwner(UUID owner) {
         Preconditions.checkNotNull(owner, "Owner UUID cannot be null.");
         Preconditions.checkArgument(itemMeta instanceof SkullMeta, "ItemMeta must be an instance of SkullMeta.");
@@ -76,13 +133,9 @@ public class ItemBuilder {
         return this;
     }
 
+    @Deprecated
     public ItemBuilder setColor(Color color) {
         if (itemMeta instanceof LeatherArmorMeta) ((LeatherArmorMeta) itemMeta).setColor(color);
         return this;
-    }
-
-    public ItemStack build() {
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
     }
 }
