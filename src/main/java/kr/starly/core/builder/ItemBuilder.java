@@ -31,6 +31,11 @@ public class ItemBuilder {
         itemMeta = itemStack.getItemMeta();
     }
 
+    public ItemBuilder setAmount(int amount) {
+        itemStack.setAmount(amount);
+        return this;
+    }
+
     public ItemBuilder setName(String name) {
         Preconditions.checkNotNull(name, "The name cannot be null.");
         itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
