@@ -339,7 +339,7 @@ public class ArmorStandWrapper {
 
     public void teleport(Player target, Location location, boolean savePose) {
         try {
-            FeatherLocation featherLocation = nmsOtherUtil.toFeatherLocation(location);
+            this.location = nmsOtherUtil.toFeatherLocation(location);
             nmsOtherUtil.Entity_setLocation().invoke(entityArmorStand, location.getX(), location.getY(), location.getZ());
             nmsOtherUtil.Entity_setYawPitch().invoke(entityArmorStand, location.getYaw(), location.getPitch());
 
