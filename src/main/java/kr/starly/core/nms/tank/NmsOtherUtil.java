@@ -125,6 +125,7 @@ public class NmsOtherUtil {
                     fieldNameMap.put("v1_19_R3", "b");
                     fieldNameMap.put("v1_20_R1", "c");
                     fieldNameMap.put("v1_20_R2", "c");
+                    fieldNameMap.put("v1_20_R3", "c");
 
                     playerConnectionAtEntityPlayer = EntityPlayer().getField(fieldNameMap.get(version.getVersion()));
                 } catch (NoSuchFieldException ex) {
@@ -181,6 +182,7 @@ public class NmsOtherUtil {
                     fieldNameMap.put("v1_19_R3", "a");
                     fieldNameMap.put("v1_20_R1", "a");
                     fieldNameMap.put("v1_20_R2", "b");
+                    fieldNameMap.put("v1_20_R3", "b");
 
                     sendPacketAtPlayerConnection = PlayerConnection().getMethod(fieldNameMap.get(version.getVersion()), Packet());
                 } catch (NoSuchMethodException ex) {
@@ -283,6 +285,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "n");
                     methodNameMap.put("v1_20_R1", "n");
                     methodNameMap.put("v1_20_R2", "n");
+                    methodNameMap.put("v1_20_R3", "n");
 
                     setLocationAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), double.class, double.class, double.class);
                 } catch (NoSuchMethodException ex) {
@@ -320,6 +323,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "a");
                     methodNameMap.put("v1_20_R1", "a");
                     methodNameMap.put("v1_20_R2", "a");
+                    methodNameMap.put("v1_20_R3", "a");
 
                     setYawPitchAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), float.class, float.class);
                 } catch (NoSuchMethodException ex) {
@@ -357,6 +361,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "b");
                     methodNameMap.put("v1_20_R1", "b");
                     methodNameMap.put("v1_20_R2", "b");
+                    methodNameMap.put("v1_20_R3", "b");
 
                     setCustomNameAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), IChatBaseComponent());
                 } catch (NoSuchMethodException ex) {
@@ -394,6 +399,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "af");
                     methodNameMap.put("v1_20_R1", "af");
                     methodNameMap.put("v1_20_R2", "ah");
+                    methodNameMap.put("v1_20_R3", "aj");
 
                     getIdAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()));
                 } catch (NoSuchMethodException ex) {
@@ -431,6 +437,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "aj");
                     methodNameMap.put("v1_20_R1", "aj");
                     methodNameMap.put("v1_20_R2", "al");
+                    methodNameMap.put("v1_20_R3", "an");
 
                     getDataWatcherAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()));
                 } catch (NoSuchMethodException ex) {
@@ -468,6 +475,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "e");
                     methodNameMap.put("v1_20_R1", "e");
                     methodNameMap.put("v1_20_R2", "e");
+                    methodNameMap.put("v1_20_R3", "e");
 
                     setNoGravityAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
                 } catch (NoSuchMethodException ex) {
@@ -505,6 +513,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "j");
                     methodNameMap.put("v1_20_R1", "j");
                     methodNameMap.put("v1_20_R2", "j");
+                    methodNameMap.put("v1_20_R3", "j");
 
                     setInvisibleAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
                 } catch (NoSuchMethodException ex) {
@@ -542,6 +551,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "n");
                     methodNameMap.put("v1_20_R1", "n");
                     methodNameMap.put("v1_20_R2", "n");
+                    methodNameMap.put("v1_20_R3", "n");
 
                     setCustomNameVisibleAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
                 } catch (NoSuchMethodException ex) {
@@ -671,6 +681,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "t");
                     methodNameMap.put("v1_20_R1", "t");
                     methodNameMap.put("v1_20_R2", "t");
+                    methodNameMap.put("v1_20_R3", "t");
 
                     setSmallAtEntityArmorStand = EntityArmorStand().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
                 } catch (NoSuchMethodException ex) {
@@ -708,6 +719,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "a");
                     methodNameMap.put("v1_20_R1", "a");
                     methodNameMap.put("v1_20_R2", "a");
+                    methodNameMap.put("v1_20_R3", "a");
 
                     setShowArmsAtEntityArmorStand = EntityArmorStand().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
                 } catch (NoSuchMethodException ex) {
@@ -745,6 +757,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "s");
                     methodNameMap.put("v1_20_R1", "s");
                     methodNameMap.put("v1_20_R2", "s");
+                    methodNameMap.put("v1_20_R3", "s");
 
                     setNoBasePlateAtEntityArmorStand = EntityArmorStand().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
                 } catch (NoSuchMethodException ex) {
@@ -782,6 +795,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "u");
                     methodNameMap.put("v1_20_R1", "u");
                     methodNameMap.put("v1_20_R2", "u");
+                    methodNameMap.put("v1_20_R3", "u");
 
                     setMarkerAtEntityArmorStand = EntityArmorStand().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
                 } catch (NoSuchMethodException ex) {
@@ -799,7 +813,7 @@ public class NmsOtherUtil {
     public Method EntityArmorStand_setHeadYaw() {
         if (setHeadYawAtEntityArmorStand == null) {
             try {
-                setHeadYawAtEntityArmorStand = EntityArmorStand().getMethod("setHeadRotation", Vector3f());
+                setHeadYawAtEntityArmorStand = EntityArmorStand().getMethod("setYHeadRot", Vector3f());
             } catch (NoSuchMethodException ignored) {
                 try {
                     Map<String, String> methodNameMap = new HashMap<>();
@@ -819,6 +833,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "r");
                     methodNameMap.put("v1_20_R1", "n");
                     methodNameMap.put("v1_20_R2", "n");
+                    methodNameMap.put("v1_20_R3", "n");
 
                     setHeadYawAtEntityArmorStand = EntityArmorStand().getMethod(methodNameMap.get(version.getVersion()), float.class);
                 } catch (NoSuchMethodException ex) {
@@ -856,6 +871,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "a");
                     methodNameMap.put("v1_20_R1", "a");
                     methodNameMap.put("v1_20_R2", "a");
+                    methodNameMap.put("v1_20_R3", "a");
 
                     setHeadPoseAtEntityArmorStand = EntityArmorStand().getMethod(methodNameMap.get(version.getVersion()), Vector3f());
                 } catch (NoSuchMethodException ex) {
@@ -893,6 +909,7 @@ public class NmsOtherUtil {
                     fieldNameMap.put("v1_19_R3", "cb");
                     fieldNameMap.put("v1_20_R1", "cc");
                     fieldNameMap.put("v1_20_R2", "cc");
+                    fieldNameMap.put("v1_20_R3", "cc");
 
                     headPoseAtEntityArmorStand = EntityArmorStand().getField(fieldNameMap.get(version.getVersion()));
                 } catch (NoSuchFieldException ex) {
@@ -901,44 +918,6 @@ public class NmsOtherUtil {
             }
         }
         return headPoseAtEntityArmorStand;
-    }
-
-    /**
-     * EntityArmorStand#getHeadPose() (Support: 1.14+)
-     */
-    private Method getHeadPoseAtEntityArmorStand;
-    public Method EntityArmorStand_getHeadPose() {
-        if (getHeadPoseAtEntityArmorStand == null) {
-            try {
-                getHeadPoseAtEntityArmorStand = EntityArmorStand().getMethod("getHeadPose");
-            } catch (NoSuchMethodException ignored) {
-                try {
-                    Map<String, String> methodNameMap = new HashMap<>();
-                    methodNameMap.put("v1_12_R1", null);
-                    methodNameMap.put("v1_13_R1", null);
-                    methodNameMap.put("v1_13_R2", null);
-                    methodNameMap.put("v1_14_R1", "r");
-                    methodNameMap.put("v1_15_R1", "r");
-                    methodNameMap.put("v1_16_R1", "r");
-                    methodNameMap.put("v1_16_R2", "r");
-                    methodNameMap.put("v1_16_R3", "r");
-                    methodNameMap.put("v1_17_R1", "v");
-                    methodNameMap.put("v1_18_R1", "u");
-                    methodNameMap.put("v1_18_R2", "u");
-                    methodNameMap.put("v1_19_R1", "u");
-                    methodNameMap.put("v1_19_R2", "u");
-                    methodNameMap.put("v1_19_R3", "x");
-                    methodNameMap.put("v1_20_R1", "x");
-                    methodNameMap.put("v1_20_R2", "z");
-
-                    String methodName = methodNameMap.get(version.getVersion());
-                    if (methodName != null) getHeadPoseAtEntityArmorStand = EntityArmorStand().getMethod(methodName);
-                } catch (NoSuchMethodException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-        return getHeadPoseAtEntityArmorStand;
     }
 
     /**
@@ -968,6 +947,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "c");
                     methodNameMap.put("v1_20_R1", "c");
                     methodNameMap.put("v1_20_R2", "c");
+                    methodNameMap.put("v1_20_R3", "c");
 
                     setLeftArmPoseAtEntityArmorStand = EntityArmorStand().getMethod(methodNameMap.get(version.getVersion()), Vector3f());
                 } catch (NoSuchMethodException ex) {
@@ -1005,6 +985,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "d");
                     methodNameMap.put("v1_20_R1", "d");
                     methodNameMap.put("v1_20_R2", "d");
+                    methodNameMap.put("v1_20_R3", "d");
 
                     String methodName = methodNameMap.get(version.getVersion());
                     if (methodName != null) setRightArmPoseAtEntityArmorStand = EntityArmorStand().getMethod(methodName, Vector3f());
@@ -1043,6 +1024,7 @@ public class NmsOtherUtil {
                     fieldNameMap.put("v1_19_R3", "cd");
                     fieldNameMap.put("v1_20_R1", "ce");
                     fieldNameMap.put("v1_20_R2", "ce");
+                    fieldNameMap.put("v1_20_R3", "ce");
 
                     leftArmPoseAtEntityArmorStand = EntityArmorStand().getField(fieldNameMap.get(version.getVersion()));
                 } catch (NoSuchFieldException ex) {
@@ -1080,6 +1062,7 @@ public class NmsOtherUtil {
                     fieldNameMap.put("v1_19_R3", "ce");
                     fieldNameMap.put("v1_20_R1", "cf");
                     fieldNameMap.put("v1_20_R2", "cf");
+                    fieldNameMap.put("v1_20_R3", "cf");
 
                     rightArmPoseAtEntityArmorStand = EntityArmorStand().getField(fieldNameMap.get(version.getVersion()));
                 } catch (NoSuchFieldException ex) {
@@ -1117,6 +1100,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "e");
                     methodNameMap.put("v1_20_R1", "e");
                     methodNameMap.put("v1_20_R2", "e");
+                    methodNameMap.put("v1_20_R3", "e");
 
                     String methodName = methodNameMap.get(version.getVersion());
                     if (methodName != null) setLeftLegPoseAtEntityArmorStand = EntityArmorStand().getMethod(methodName, Vector3f());
@@ -1155,6 +1139,7 @@ public class NmsOtherUtil {
                     methodNameMap.put("v1_19_R3", "f");
                     methodNameMap.put("v1_20_R1", "f");
                     methodNameMap.put("v1_20_R2", "f");
+                    methodNameMap.put("v1_20_R3", "f");
 
                     String methodName = methodNameMap.get(version.getVersion());
                     if (methodName != null) setRightLegPoseAtEntityArmorStand = EntityArmorStand().getMethod(methodName, Vector3f());
@@ -1193,6 +1178,7 @@ public Field EntityArmorStand_leftLegPose() {
                     fieldNameMap.put("v1_19_R3", "cf");
                     fieldNameMap.put("v1_20_R1", "cg");
                     fieldNameMap.put("v1_20_R2", "cg");
+                    fieldNameMap.put("v1_20_R3", "cg");
 
                     leftLegPoseAtEntityArmorStand = EntityArmorStand().getField(fieldNameMap.get(version.getVersion()));
                 } catch (NoSuchFieldException ex) {
@@ -1230,6 +1216,7 @@ public Field EntityArmorStand_rightLegPose() {
                     fieldNameMap.put("v1_19_R3", "cg");
                     fieldNameMap.put("v1_20_R1", "ch");
                     fieldNameMap.put("v1_20_R2", "ch");
+                    fieldNameMap.put("v1_20_R3", "ch");
 
                     rightLegPoseAtEntityArmorStand = EntityArmorStand().getField(fieldNameMap.get(version.getVersion()));
                 } catch (NoSuchFieldException ex) {
@@ -1394,6 +1381,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_19_R3", "b");
                     methodNameMap.put("v1_20_R1", "b");
                     methodNameMap.put("v1_20_R2", "b");
+                    methodNameMap.put("v1_20_R3", "b");
 
                     getXAtVector3f = Vector3f().getMethod(methodNameMap.get(version.getVersion()));
                 } catch (NoSuchMethodException ex) {
@@ -1431,6 +1419,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_19_R3", "c");
                     methodNameMap.put("v1_20_R1", "c");
                     methodNameMap.put("v1_20_R2", "c");
+                    methodNameMap.put("v1_20_R3", "c");
 
                     getYAtVector3f = Vector3f().getMethod(methodNameMap.get(version.getVersion()));
                 } catch (NoSuchMethodException ex) {
@@ -1468,6 +1457,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_19_R3", "d");
                     methodNameMap.put("v1_20_R1", "d");
                     methodNameMap.put("v1_20_R2", "d");
+                    methodNameMap.put("v1_20_R3", "d");
 
                     getZAtVector3f = Vector3f().getMethod(methodNameMap.get(version.getVersion()));
                 } catch (NoSuchMethodException ex) {
@@ -1535,25 +1525,7 @@ public Field EntityArmorStand_rightLegPose() {
                 EnumHand_MAIN_HAND = EnumHand().getField("MAIN_HAND").get(null);
             } catch (Exception ignored) {
                 try {
-                    Map<String, String> methodNameMap = new HashMap<>();
-                    methodNameMap.put("v1_12_R1", "a");
-                    methodNameMap.put("v1_13_R1", "a");
-                    methodNameMap.put("v1_13_R2", "a");
-                    methodNameMap.put("v1_14_R1", "a");
-                    methodNameMap.put("v1_15_R1", "a");
-                    methodNameMap.put("v1_16_R1", "a");
-                    methodNameMap.put("v1_16_R2", "a");
-                    methodNameMap.put("v1_16_R3", "a");
-                    methodNameMap.put("v1_17_R1", "a");
-                    methodNameMap.put("v1_18_R1", "a");
-                    methodNameMap.put("v1_18_R2", "a");
-                    methodNameMap.put("v1_19_R1", "a");
-                    methodNameMap.put("v1_19_R2", "a");
-                    methodNameMap.put("v1_19_R3", "a");
-                    methodNameMap.put("v1_20_R1", "a");
-                    methodNameMap.put("v1_20_R2", "a");
-
-                    EnumHand_MAIN_HAND = EnumHand().getField(methodNameMap.get(version.getVersion())).get(null);
+                    EnumHand_MAIN_HAND = EnumHand().getField("a").get(null);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1572,25 +1544,7 @@ public Field EntityArmorStand_rightLegPose() {
                 EnumHand_OFF_HAND = EnumHand().getField("OFF_HAND").get(null);
             } catch (Exception ignored) {
                 try {
-                    Map<String, String> methodNameMap = new HashMap<>();
-                    methodNameMap.put("v1_12_R1", "b");
-                    methodNameMap.put("v1_13_R1", "b");
-                    methodNameMap.put("v1_13_R2", "b");
-                    methodNameMap.put("v1_14_R1", "b");
-                    methodNameMap.put("v1_15_R1", "b");
-                    methodNameMap.put("v1_16_R1", "b");
-                    methodNameMap.put("v1_16_R2", "b");
-                    methodNameMap.put("v1_16_R3", "b");
-                    methodNameMap.put("v1_17_R1", "b");
-                    methodNameMap.put("v1_18_R1", "b");
-                    methodNameMap.put("v1_18_R2", "b");
-                    methodNameMap.put("v1_19_R1", "b");
-                    methodNameMap.put("v1_19_R2", "b");
-                    methodNameMap.put("v1_19_R3", "b");
-                    methodNameMap.put("v1_20_R1", "b");
-                    methodNameMap.put("v1_20_R2", "b");
-
-                    EnumHand_OFF_HAND = EnumHand().getField(methodNameMap.get(version.getVersion())).get(null);
+                    EnumHand_OFF_HAND = EnumHand().getField("b").get(null);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1628,25 +1582,7 @@ public Field EntityArmorStand_rightLegPose() {
                 MAINHANDAtEnumItemSlot = EnumItemSlot().getField("MAINHAND").get(null);
             } catch (Exception ignored) {
                 try {
-                    Map<String, String> fieldNameMap = new HashMap<>();
-                    fieldNameMap.put("v1_12_R1", "a");
-                    fieldNameMap.put("v1_13_R1", "a");
-                    fieldNameMap.put("v1_13_R2", "a");
-                    fieldNameMap.put("v1_14_R1", "a");
-                    fieldNameMap.put("v1_15_R1", "a");
-                    fieldNameMap.put("v1_16_R1", "a");
-                    fieldNameMap.put("v1_16_R2", "a");
-                    fieldNameMap.put("v1_16_R3", "a");
-                    fieldNameMap.put("v1_17_R1", "a");
-                    fieldNameMap.put("v1_18_R1", "a");
-                    fieldNameMap.put("v1_18_R2", "a");
-                    fieldNameMap.put("v1_19_R1", "a");
-                    fieldNameMap.put("v1_19_R2", "a");
-                    fieldNameMap.put("v1_19_R3", "a");
-                    fieldNameMap.put("v1_20_R1", "a");
-                    fieldNameMap.put("v1_20_R2", "a");
-
-                    MAINHANDAtEnumItemSlot = EnumItemSlot().getField(fieldNameMap.get(version.getVersion())).get(null);
+                    MAINHANDAtEnumItemSlot = EnumItemSlot().getField("a").get(null);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1665,25 +1601,7 @@ public Field EntityArmorStand_rightLegPose() {
                 OFFHANDAtEnumItemSlot = EnumItemSlot().getField("CHEST").get(null);
             } catch (Exception ignored) {
                 try {
-                    Map<String, String> fieldNameMap = new HashMap<>();
-                    fieldNameMap.put("v1_12_R1", "b");
-                    fieldNameMap.put("v1_13_R1", "b");
-                    fieldNameMap.put("v1_13_R2", "b");
-                    fieldNameMap.put("v1_14_R1", "b");
-                    fieldNameMap.put("v1_15_R1", "b");
-                    fieldNameMap.put("v1_16_R1", "b");
-                    fieldNameMap.put("v1_16_R2", "b");
-                    fieldNameMap.put("v1_16_R3", "b");
-                    fieldNameMap.put("v1_17_R1", "b");
-                    fieldNameMap.put("v1_18_R1", "b");
-                    fieldNameMap.put("v1_18_R2", "b");
-                    fieldNameMap.put("v1_19_R1", "b");
-                    fieldNameMap.put("v1_19_R2", "b");
-                    fieldNameMap.put("v1_19_R3", "b");
-                    fieldNameMap.put("v1_20_R1", "b");
-                    fieldNameMap.put("v1_20_R2", "b");
-
-                    OFFHANDAtEnumItemSlot = EnumItemSlot().getField(fieldNameMap.get(version.getVersion())).get(null);
+                    OFFHANDAtEnumItemSlot = EnumItemSlot().getField("b").get(null);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1702,25 +1620,7 @@ public Field EntityArmorStand_rightLegPose() {
                 FEETAtEnumItemSlot = EnumItemSlot().getField("FEET").get(null);
             } catch (Exception ignored) {
                 try {
-                    Map<String, String> fieldNameMap = new HashMap<>();
-                    fieldNameMap.put("v1_12_R1", "c");
-                    fieldNameMap.put("v1_13_R1", "c");
-                    fieldNameMap.put("v1_13_R2", "c");
-                    fieldNameMap.put("v1_14_R1", "c");
-                    fieldNameMap.put("v1_15_R1", "c");
-                    fieldNameMap.put("v1_16_R1", "c");
-                    fieldNameMap.put("v1_16_R2", "c");
-                    fieldNameMap.put("v1_16_R3", "c");
-                    fieldNameMap.put("v1_17_R1", "c");
-                    fieldNameMap.put("v1_18_R1", "c");
-                    fieldNameMap.put("v1_18_R2", "c");
-                    fieldNameMap.put("v1_19_R1", "c");
-                    fieldNameMap.put("v1_19_R2", "c");
-                    fieldNameMap.put("v1_19_R3", "c");
-                    fieldNameMap.put("v1_20_R1", "c");
-                    fieldNameMap.put("v1_20_R2", "c");
-
-                    FEETAtEnumItemSlot = EnumItemSlot().getField(fieldNameMap.get(version.getVersion())).get(null);
+                    FEETAtEnumItemSlot = EnumItemSlot().getField("c").get(null);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1739,25 +1639,7 @@ public Field EntityArmorStand_rightLegPose() {
                 LEGSAtEnumItemSlot = EnumItemSlot().getField("LEGS").get(null);
             } catch (Exception ignored) {
                 try {
-                    Map<String, String> fieldNameMap = new HashMap<>();
-                    fieldNameMap.put("v1_12_R1", "d");
-                    fieldNameMap.put("v1_13_R1", "d");
-                    fieldNameMap.put("v1_13_R2", "d");
-                    fieldNameMap.put("v1_14_R1", "d");
-                    fieldNameMap.put("v1_15_R1", "d");
-                    fieldNameMap.put("v1_16_R1", "d");
-                    fieldNameMap.put("v1_16_R2", "d");
-                    fieldNameMap.put("v1_16_R3", "d");
-                    fieldNameMap.put("v1_17_R1", "d");
-                    fieldNameMap.put("v1_18_R1", "d");
-                    fieldNameMap.put("v1_18_R2", "d");
-                    fieldNameMap.put("v1_19_R1", "d");
-                    fieldNameMap.put("v1_19_R2", "d");
-                    fieldNameMap.put("v1_19_R3", "d");
-                    fieldNameMap.put("v1_20_R1", "d");
-                    fieldNameMap.put("v1_20_R2", "d");
-
-                    LEGSAtEnumItemSlot = EnumItemSlot().getField(fieldNameMap.get(version.getVersion())).get(null);
+                    LEGSAtEnumItemSlot = EnumItemSlot().getField("d").get(null);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1776,25 +1658,7 @@ public Field EntityArmorStand_rightLegPose() {
                 CHESTAtEnumItemSlot = EnumItemSlot().getField("CHEST").get(null);
             } catch (Exception ignored) {
                 try {
-                    Map<String, String> fieldNameMap = new HashMap<>();
-                    fieldNameMap.put("v1_12_R1", "e");
-                    fieldNameMap.put("v1_13_R1", "e");
-                    fieldNameMap.put("v1_13_R2", "e");
-                    fieldNameMap.put("v1_14_R1", "e");
-                    fieldNameMap.put("v1_15_R1", "e");
-                    fieldNameMap.put("v1_16_R1", "e");
-                    fieldNameMap.put("v1_16_R2", "e");
-                    fieldNameMap.put("v1_16_R3", "e");
-                    fieldNameMap.put("v1_17_R1", "e");
-                    fieldNameMap.put("v1_18_R1", "e");
-                    fieldNameMap.put("v1_18_R2", "e");
-                    fieldNameMap.put("v1_19_R1", "e");
-                    fieldNameMap.put("v1_19_R2", "e");
-                    fieldNameMap.put("v1_19_R3", "e");
-                    fieldNameMap.put("v1_20_R1", "e");
-                    fieldNameMap.put("v1_20_R2", "e");
-
-                    CHESTAtEnumItemSlot = EnumItemSlot().getField(fieldNameMap.get(version.getVersion())).get(null);
+                    CHESTAtEnumItemSlot = EnumItemSlot().getField("e").get(null);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1813,25 +1677,7 @@ public Field EntityArmorStand_rightLegPose() {
                 EnumItemSlot_HEAD = EnumItemSlot().getField("HEAD").get(null);
             } catch (Exception ignored) {
                 try {
-                    Map<String, String> fieldNameMap = new HashMap<>();
-                    fieldNameMap.put("v1_12_R1", "f");
-                    fieldNameMap.put("v1_13_R1", "f");
-                    fieldNameMap.put("v1_13_R2", "f");
-                    fieldNameMap.put("v1_14_R1", "f");
-                    fieldNameMap.put("v1_15_R1", "f");
-                    fieldNameMap.put("v1_16_R1", "f");
-                    fieldNameMap.put("v1_16_R2", "f");
-                    fieldNameMap.put("v1_16_R3", "f");
-                    fieldNameMap.put("v1_17_R1", "f");
-                    fieldNameMap.put("v1_18_R1", "f");
-                    fieldNameMap.put("v1_18_R2", "f");
-                    fieldNameMap.put("v1_19_R1", "f");
-                    fieldNameMap.put("v1_19_R2", "f");
-                    fieldNameMap.put("v1_19_R3", "f");
-                    fieldNameMap.put("v1_20_R1", "f");
-                    fieldNameMap.put("v1_20_R2", "f");
-
-                    EnumItemSlot_HEAD = EnumItemSlot().getField(fieldNameMap.get(version.getVersion())).get(null);
+                    EnumItemSlot_HEAD = EnumItemSlot().getField("f").get(null);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1863,40 +1709,40 @@ public Field EntityArmorStand_rightLegPose() {
     }
 
     /**
-     * ItemStack#setTag(NBTTagCompound)
+     * ItemStack#getItem()
      */
-    private Method ItemStackSetTagMethod;
-    public Method ItemStack_setTag() {
-        if (ItemStackSetTagMethod == null) {
+    private Method getItemInItemStack;
+    public Method ItemStack_getItem() {
+        if (getItemInItemStack == null) {
             try {
-                ItemStackSetTagMethod = ItemStack().getMethod("setTag", NBTTagCompound());
-            } catch (NoSuchMethodException ignored) {
+                getItemInItemStack = ItemStack().getMethod("getItem");
+            } catch (NoSuchMethodException e) {
                 try {
                     Map<String, String> methodNameMap = new HashMap<>();
                     methodNameMap.put("v1_12_R1", "c");
-                    methodNameMap.put("v1_13_R1", "c");
-                    methodNameMap.put("v1_13_R2", "c");
-                    methodNameMap.put("v1_14_R1", "c");
-                    methodNameMap.put("v1_15_R1", "c");
-                    methodNameMap.put("v1_16_R1", "c");
-                    methodNameMap.put("v1_16_R2", "c");
-                    methodNameMap.put("v1_16_R3", "c");
+                    methodNameMap.put("v1_13_R1", "b");
+                    methodNameMap.put("v1_13_R2", "b");
+                    methodNameMap.put("v1_14_R1", "b");
+                    methodNameMap.put("v1_15_R1", "b");
+                    methodNameMap.put("v1_16_R2", "b");
+                    methodNameMap.put("v1_16_R3", "b");
                     methodNameMap.put("v1_17_R1", "c");
                     methodNameMap.put("v1_18_R1", "c");
                     methodNameMap.put("v1_18_R2", "c");
                     methodNameMap.put("v1_19_R1", "c");
                     methodNameMap.put("v1_19_R2", "c");
                     methodNameMap.put("v1_19_R3", "c");
-                    methodNameMap.put("v1_20_R1", "c");
-                    methodNameMap.put("v1_20_R2", "c");
+                    methodNameMap.put("v1_20_R1", "d");
+                    methodNameMap.put("v1_20_R2", "d");
+                    methodNameMap.put("v1_20_R3", "d");
 
-                    ItemStackSetTagMethod = ItemStack().getDeclaredMethod(methodNameMap.get(version.getVersion()), NBTTagCompound());
+                    getItemInItemStack = ItemStack().getMethod(methodNameMap.get(version.getVersion()));
                 } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }
             }
         }
-        return ItemStackSetTagMethod;
+        return getItemInItemStack;
     }
 
     /**
@@ -1926,6 +1772,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_19_R3", "u");
                     methodNameMap.put("v1_20_R1", "v");
                     methodNameMap.put("v1_20_R2", "v");
+                    methodNameMap.put("v1_20_R3", "v");
 
                     ItemStackGetTagMethod = ItemStack().getDeclaredMethod(methodNameMap.get(version.getVersion()));
                 } catch (NoSuchMethodException ex) {
@@ -1934,6 +1781,44 @@ public Field EntityArmorStand_rightLegPose() {
             }
         }
         return ItemStackGetTagMethod;
+    }
+
+    /**
+     * ItemStack#setTag(NBTTagCompound)
+     */
+    private Method ItemStackSetTagMethod;
+    public Method ItemStack_setTag() {
+        if (ItemStackSetTagMethod == null) {
+            try {
+                ItemStackSetTagMethod = ItemStack().getMethod("setTag", NBTTagCompound());
+            } catch (NoSuchMethodException ignored) {
+                try {
+                    Map<String, String> methodNameMap = new HashMap<>();
+                    methodNameMap.put("v1_12_R1", "c");
+                    methodNameMap.put("v1_13_R1", "c");
+                    methodNameMap.put("v1_13_R2", "c");
+                    methodNameMap.put("v1_14_R1", "c");
+                    methodNameMap.put("v1_15_R1", "c");
+                    methodNameMap.put("v1_16_R1", "c");
+                    methodNameMap.put("v1_16_R2", "c");
+                    methodNameMap.put("v1_16_R3", "c");
+                    methodNameMap.put("v1_17_R1", "c");
+                    methodNameMap.put("v1_18_R1", "c");
+                    methodNameMap.put("v1_18_R2", "c");
+                    methodNameMap.put("v1_19_R1", "c");
+                    methodNameMap.put("v1_19_R2", "c");
+                    methodNameMap.put("v1_19_R3", "c");
+                    methodNameMap.put("v1_20_R1", "c");
+                    methodNameMap.put("v1_20_R2", "c");
+                    methodNameMap.put("v1_20_R3", "c");
+
+                    ItemStackSetTagMethod = ItemStack().getDeclaredMethod(methodNameMap.get(version.getVersion()), NBTTagCompound());
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return ItemStackSetTagMethod;
     }
 
     /**
@@ -1997,6 +1882,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_19_R3", "l");
                     methodNameMap.put("v1_20_R1", "l");
                     methodNameMap.put("v1_20_R2", "l");
+                    methodNameMap.put("v1_20_R3", "l");
 
                     getStringAtNBTTagCompound = NBTTagCompoundClass.getDeclaredMethod(methodNameMap.get(version.getVersion()), String.class);
                 } catch (Exception ex) {
@@ -2017,25 +1903,7 @@ public Field EntityArmorStand_rightLegPose() {
                 setStringAtNBTTagCompound = NBTTagCompound().getMethod("setString", String.class, String.class);
             } catch (Exception ignored) {
                 try {
-                    Map<String, String> methodNameMap = new HashMap<>();
-                    methodNameMap.put("v1_12_R1", "a");
-                    methodNameMap.put("v1_13_R1", "a");
-                    methodNameMap.put("v1_13_R2", "a");
-                    methodNameMap.put("v1_14_R1", "a");
-                    methodNameMap.put("v1_15_R1", "a");
-                    methodNameMap.put("v1_16_R1", "a");
-                    methodNameMap.put("v1_16_R2", "a");
-                    methodNameMap.put("v1_16_R3", "a");
-                    methodNameMap.put("v1_17_R1", "a");
-                    methodNameMap.put("v1_18_R1", "a");
-                    methodNameMap.put("v1_18_R2", "a");
-                    methodNameMap.put("v1_19_R1", "a");
-                    methodNameMap.put("v1_19_R2", "a");
-                    methodNameMap.put("v1_19_R3", "a");
-                    methodNameMap.put("v1_20_R1", "a");
-                    methodNameMap.put("v1_20_R2", "a");
-
-                    setStringAtNBTTagCompound = NBTTagCompoundClass.getDeclaredMethod(methodNameMap.get(version.getVersion()), String.class, String.class);
+                    setStringAtNBTTagCompound = NBTTagCompoundClass.getDeclaredMethod("a", String.class, String.class);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -2089,6 +1957,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_19_R3", "j");
                     methodNameMap.put("v1_20_R1", "j");
                     methodNameMap.put("v1_20_R2", "j");
+                    methodNameMap.put("v1_20_R3", "j");
 
                     getDescriptionIdAtItem = Item().getMethod(methodNameMap.get(version.getVersion()), ItemStack());
                 } catch (NoSuchMethodException ex) {
@@ -2126,6 +1995,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_19_R3", "a");
                     methodNameMap.put("v1_20_R1", "a");
                     methodNameMap.put("v1_20_R2", "a");
+                    methodNameMap.put("v1_20_R3", "a");
 
                     useAtItem = Item().getMethod(methodNameMap.get(version.getVersion()), World(), EntityHuman(), EnumHand());
                 } catch (NoSuchMethodException ex) {
@@ -2197,6 +2067,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_19_R3", "a");
                     methodNameMap.put("v1_20_R1", "a");
                     methodNameMap.put("v1_20_R2", "a");
+                    methodNameMap.put("v1_20_R3", "a");
 
                     setItemAtEntityItem = EntityItem().getMethod(methodNameMap.get(version.getVersion()), ItemStack());
                 } catch (NoSuchMethodException ex) {

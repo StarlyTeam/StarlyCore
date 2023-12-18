@@ -30,7 +30,7 @@ public class ArmorStandWrapper {
         this.entityArmorStand = entityArmorStand;
 
         try {
-            defaultHeadPose = nmsOtherUtil.EntityArmorStand_getHeadPose().invoke(entityArmorStand);
+            defaultHeadPose = nmsOtherUtil.EntityArmorStand_headPose().get(entityArmorStand);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -344,7 +344,7 @@ public class ArmorStandWrapper {
             nmsOtherUtil.Entity_setYawPitch().invoke(entityArmorStand, location.getYaw(), location.getPitch());
 
             nmsOtherUtil.sendPacket(target, nmsOtherUtil.PacketPlayOutEntityTeleport_Constructor(), entityArmorStand);
-            if (savePose) defaultHeadPose = nmsOtherUtil.EntityArmorStand_getHeadPose().invoke(entityArmorStand);
+            if (savePose) defaultHeadPose = nmsOtherUtil.EntityArmorStand_headPose().get(entityArmorStand);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
