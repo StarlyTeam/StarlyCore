@@ -38,6 +38,7 @@ public class ItemWrapper {
                 methodNameMap.put("v1_19_R2", "c");
                 methodNameMap.put("v1_19_R3", "c");
                 methodNameMap.put("v1_20_R1", "d");
+                methodNameMap.put("v1_20_R2", "d");
 
                 getItemMethod = itemSupport.getItemStackClass().getMethod(methodNameMap.get(version.getVersion()));
             }
