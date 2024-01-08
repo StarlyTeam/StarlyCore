@@ -2194,12 +2194,42 @@ public Field EntityArmorStand_rightLegPose() {
                     try {
                         PacketPlayOutEntityMetadataConstructor = Class.forName("net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata").getConstructor(int.class, List.class);
                     } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                        ex.printStackTrace();
+                    }
                 }
             }
         }
         return PacketPlayOutEntityMetadataConstructor;
+    }
+
+    /**
+     * PacketPlayOutAttachEntity
+     */
+    private Constructor<?> PacketPlayOutAttachEntityConstructor;
+    public Constructor<?> PacketPlayOutAttachEntity_Constructor() {
+        if (PacketPlayOutAttachEntityConstructor == null) {
+            try {
+                PacketPlayOutAttachEntityConstructor = Class.forName(nmsPackage + ".PacketPlayOutAttachEntity").getConstructor(Entity(), Entity());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return PacketPlayOutAttachEntityConstructor;
+    }
+
+    /**
+     * PacketPlayOutMount
+     */
+    private Constructor<?> PacketPlayOutMountConstructor;
+    public Constructor<?> PacketPlayOutMount_Constructor() {
+        if (PacketPlayOutMountConstructor == null) {
+            try {
+                PacketPlayOutMountConstructor = Class.forName(nmsPackage + ".PacketPlayOutMount").getConstructor(Entity());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return PacketPlayOutMountConstructor;
     }
 
     /* ENTITY
