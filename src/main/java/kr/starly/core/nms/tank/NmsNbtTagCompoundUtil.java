@@ -17,7 +17,7 @@ public class NmsNbtTagCompoundUtil {
 
         NBTTagCompoundClass = nmsOtherUtil.NBTTagCompound();
         getStringMethod = nmsOtherUtil.NBTTagCompound_getString();
-        setStringMethod = nmsOtherUtil.NBTTagCompound_setString();
+        setStringMethod = nmsOtherUtil.NBTTagCompound_putString();
     }
 
     public NBTTagCompoundWrapper newInstance() {

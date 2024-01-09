@@ -8,7 +8,6 @@ import kr.starly.core.nms.wrapper.WorldWrapper;
 import kr.starly.core.util.FeatherLocation;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,6 +18,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @SuppressWarnings("all")
 public class NmsOtherUtil {
@@ -458,26 +458,7 @@ public class NmsOtherUtil {
                 setNoGravityAtEntity = Entity().getMethod("setNoGravity", boolean.class);
             } catch (NoSuchMethodException ignored) {
                 try {
-                    Map<String, String> methodNameMap = new HashMap<>();
-                    methodNameMap.put("v1_12_R1", "d");
-                    methodNameMap.put("v1_13_R1", "d");
-                    methodNameMap.put("v1_13_R2", "d");
-                    methodNameMap.put("v1_14_R1", "d");
-                    methodNameMap.put("v1_15_R1", "d");
-                    methodNameMap.put("v1_16_R1", "e");
-                    methodNameMap.put("v1_16_R2", "e");
-                    methodNameMap.put("v1_16_R3", "e");
-                    methodNameMap.put("v1_17_R1", "e");
-                    methodNameMap.put("v1_18_R1", "e");
-                    methodNameMap.put("v1_18_R2", "e");
-                    methodNameMap.put("v1_19_R1", "e");
-                    methodNameMap.put("v1_19_R2", "e");
-                    methodNameMap.put("v1_19_R3", "e");
-                    methodNameMap.put("v1_20_R1", "e");
-                    methodNameMap.put("v1_20_R2", "e");
-                    methodNameMap.put("v1_20_R3", "e");
-
-                    setNoGravityAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
+                    setNoGravityAtEntity = Entity().getMethod("e", boolean.class);
                 } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }
@@ -496,26 +477,7 @@ public class NmsOtherUtil {
                 setInvisibleAtEntity = Entity().getMethod("setInvisible", boolean.class);
             } catch (NoSuchMethodException ignored) {
                 try {
-                    Map<String, String> methodNameMap = new HashMap<>();
-                    methodNameMap.put("v1_12_R1", "j");
-                    methodNameMap.put("v1_13_R1", "j");
-                    methodNameMap.put("v1_13_R2", "j");
-                    methodNameMap.put("v1_14_R1", "j");
-                    methodNameMap.put("v1_15_R1", "j");
-                    methodNameMap.put("v1_16_R1", "j");
-                    methodNameMap.put("v1_16_R2", "j");
-                    methodNameMap.put("v1_16_R3", "j");
-                    methodNameMap.put("v1_17_R1", "j");
-                    methodNameMap.put("v1_18_R1", "j");
-                    methodNameMap.put("v1_18_R2", "j");
-                    methodNameMap.put("v1_19_R1", "j");
-                    methodNameMap.put("v1_19_R2", "j");
-                    methodNameMap.put("v1_19_R3", "j");
-                    methodNameMap.put("v1_20_R1", "j");
-                    methodNameMap.put("v1_20_R2", "j");
-                    methodNameMap.put("v1_20_R3", "j");
-
-                    setInvisibleAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
+                    setInvisibleAtEntity = Entity().getMethod("j", boolean.class);
                 } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }
@@ -534,32 +496,32 @@ public class NmsOtherUtil {
                 setCustomNameVisibleAtEntity = Entity().getMethod("setCustomNameVisible", boolean.class);
             } catch (NoSuchMethodException ignored) {
                 try {
-                    Map<String, String> methodNameMap = new HashMap<>();
-                    methodNameMap.put("v1_12_R1", "n");
-                    methodNameMap.put("v1_13_R1", "n");
-                    methodNameMap.put("v1_13_R2", "n");
-                    methodNameMap.put("v1_14_R1", "n");
-                    methodNameMap.put("v1_15_R1", "n");
-                    methodNameMap.put("v1_16_R1", "n");
-                    methodNameMap.put("v1_16_R2", "n");
-                    methodNameMap.put("v1_16_R3", "n");
-                    methodNameMap.put("v1_17_R1", "n");
-                    methodNameMap.put("v1_18_R1", "n");
-                    methodNameMap.put("v1_18_R2", "n");
-                    methodNameMap.put("v1_19_R1", "n");
-                    methodNameMap.put("v1_19_R2", "n");
-                    methodNameMap.put("v1_19_R3", "n");
-                    methodNameMap.put("v1_20_R1", "n");
-                    methodNameMap.put("v1_20_R2", "n");
-                    methodNameMap.put("v1_20_R3", "n");
-
-                    setCustomNameVisibleAtEntity = Entity().getMethod(methodNameMap.get(version.getVersion()), boolean.class);
+                    setCustomNameVisibleAtEntity = Entity().getMethod("n", boolean.class);
                 } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }
             }
         }
         return setCustomNameVisibleAtEntity;
+    }
+
+    /**
+     * Entity#save(NBTTagCompound)
+     */
+    private Method saveAtEntity;
+    public Method Entity_save() {
+        if (saveAtEntity == null) {
+            try {
+                saveAtEntity = Entity().getMethod("setCustomNameVisible", NBTTagCompound());
+            } catch (NoSuchMethodException ignored) {
+                try {
+                    saveAtEntity = Entity().getMethod("e", NBTTagCompound());
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return saveAtEntity;
     }
 
     /**
@@ -1837,22 +1799,41 @@ public Field EntityArmorStand_rightLegPose() {
     }
 
     /**
-     * NBTTagCompound
+     * Tag
      */
-    private Class<?> NBTTagCompoundClass;
-    public Class<?> NBTTagCompound() {
-        if (NBTTagCompoundClass == null) {
+    private Class<?> TagClass;
+    public Class<?> Tag() {
+        if (TagClass == null) {
             try {
-                NBTTagCompoundClass = Class.forName(nmsPackage + ".NBTTagCompound");
+                TagClass = Class.forName(nmsPackage + ".NBTBase");
             } catch (Exception ignored) {
                 try {
-                    NBTTagCompoundClass = Class.forName("net.minecraft.nbt.NBTTagCompound");
+                    TagClass = Class.forName("net.minecraft.nbt.NBTBase");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         }
-        return NBTTagCompoundClass;
+        return TagClass;
+    }
+
+    /**
+     * NBTTagCompound
+     */
+    private Class<?> NBTTagCompoundClass;
+    public Class<?> NBTTagCompound() {
+        if (TagClass == null) {
+            try {
+                TagClass = Class.forName(nmsPackage + ".NBTTagCompound");
+            } catch (Exception ignored) {
+                try {
+                    TagClass = Class.forName("net.minecraft.nbt.NBTTagCompound");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return TagClass;
     }
 
     /**
@@ -1884,7 +1865,7 @@ public Field EntityArmorStand_rightLegPose() {
                     methodNameMap.put("v1_20_R2", "l");
                     methodNameMap.put("v1_20_R3", "l");
 
-                    getStringAtNBTTagCompound = NBTTagCompoundClass.getDeclaredMethod(methodNameMap.get(version.getVersion()), String.class);
+                    getStringAtNBTTagCompound = NBTTagCompound().getDeclaredMethod(methodNameMap.get(version.getVersion()), String.class);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1894,22 +1875,99 @@ public Field EntityArmorStand_rightLegPose() {
     }
 
     /**
-     * NBTTagCompound#setString(String, String)
+     * NBTTagCompound#putString(String, String)
      */
-    private Method setStringAtNBTTagCompound;
-    public Method NBTTagCompound_setString() {
-        if (setStringAtNBTTagCompound == null) {
+    private Method putStringAtNBTTagCompound;
+    public Method NBTTagCompound_putString() {
+        if (putStringAtNBTTagCompound == null) {
             try {
-                setStringAtNBTTagCompound = NBTTagCompound().getMethod("setString", String.class, String.class);
+                putStringAtNBTTagCompound = NBTTagCompound().getMethod("putString", String.class, String.class);
             } catch (Exception ignored) {
                 try {
-                    setStringAtNBTTagCompound = NBTTagCompoundClass.getDeclaredMethod("a", String.class, String.class);
+                    putStringAtNBTTagCompound = NBTTagCompound().getDeclaredMethod("a", String.class, String.class);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         }
-        return setStringAtNBTTagCompound;
+        return putStringAtNBTTagCompound;
+    }
+
+    /**
+     * NBTTagCompound#putUUID(String, UUID)
+     */
+    private Method putUUIDAtNBTTagCompound;
+    public Method NBTTagCompound_putUUID() {
+        if (putUUIDAtNBTTagCompound == null) {
+            try {
+                putUUIDAtNBTTagCompound = NBTTagCompound().getMethod("putUUID", String.class, UUID.class);
+            } catch (Exception ignored) {
+                try {
+                    putUUIDAtNBTTagCompound = NBTTagCompound().getDeclaredMethod("a", String.class, UUID.class);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return putUUIDAtNBTTagCompound;
+    }
+
+    /**
+     * NBTTagCompound#putInt(String, int)
+     */
+    private Method putIntAtNBTTagCompound;
+    public Method NBTTagCompound_putInt() {
+        if (putIntAtNBTTagCompound == null) {
+            try {
+                putIntAtNBTTagCompound = NBTTagCompound().getMethod("putInt", String.class, int.class);
+            } catch (Exception ignored) {
+                try {
+                    putIntAtNBTTagCompound = NBTTagCompound().getDeclaredMethod("a", String.class, int.class);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return putIntAtNBTTagCompound;
+    }
+
+    /**
+     * NBTTagCompound#putByte(String, byte)
+     */
+    private Method putByteAtNBTTagCompound;
+    public Method NBTTagCompound_putByte() {
+        if (putByteAtNBTTagCompound == null) {
+            try {
+                putByteAtNBTTagCompound = NBTTagCompound().getMethod("putByte", String.class, byte.class);
+            } catch (Exception ignored) {
+                try {
+                    putByteAtNBTTagCompound = NBTTagCompound().getDeclaredMethod("a", String.class, byte.class);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return putByteAtNBTTagCompound;
+    }
+
+    /**
+     * NBTTagCompound#put(String, Tag)
+     */
+    private Method putAtNBTTagCompound;
+    public Method NBTTagCompound_put() {
+        if (putAtNBTTagCompound == null) {
+            try {
+                putAtNBTTagCompound = NBTTagCompound().getMethod("put", String.class, Tag());
+            } catch (Exception ignored) {
+                try {
+//                    putAtNBTTagCompound = NBTTagCompound().getDeclaredMethod("a", String.class, Tag());
+                    putAtNBTTagCompound = NBTTagCompound().getDeclaredMethod("a", String.class, Class.forName("net.minecraft.nbt.NBTBase"));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return putAtNBTTagCompound;
     }
 
     /**
@@ -2149,11 +2207,11 @@ public Field EntityArmorStand_rightLegPose() {
         if (PacketPlayOutEntityHeadRotationConstructor == null) {
             try {
                 PacketPlayOutEntityHeadRotationConstructor = Class.forName(nmsPackage + ".PacketPlayOutEntityHeadRotation").getConstructor(Entity(), byte.class);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
                 try {
                     PacketPlayOutEntityHeadRotationConstructor = Class.forName("net.minecraft.network.protocol.game.PacketPlayOutEntityHeadRotation").getConstructor(Entity(), byte.class);
                 } catch (Exception ex) {
-                    throw new RuntimeException(e);
+                    ex.printStackTrace();
                 }
             }
         }
@@ -2232,27 +2290,50 @@ public Field EntityArmorStand_rightLegPose() {
         return PacketPlayOutMountConstructor;
     }
 
-    /* ENTITY
+    /* MOB
      ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
-    private Method addPassengerMethod;
-    public Method addPassengerMethod() {
-        if (addPassengerMethod == null) {
+    private Class<?> CraftMobClass;
+    public Class<?> CraftMob() {
+        if (CraftMobClass == null) {
             try {
-                addPassengerMethod = Entity.class.getMethod("addPassenger", Entity.class);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(e);
+                CraftMobClass = Class.forName("org.bukkit.craftbukkit.entity.CraftMob");
+            } catch (Exception ignored) {
+                try {
+                    CraftMobClass = Class.forName("org.bukkit.craftbukkit." + version.getVersion() + ".entity.CraftMob");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         }
-        return addPassengerMethod;
+        return CraftMobClass;
     }
 
-    public void addPassenger(Player target, Object passengerEntity) {
-        try {
-            Object passengerBukkitEntity = BukkitEntity().invoke(passengerEntity);
-            addPassengerMethod().invoke(target, passengerBukkitEntity);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
+    private Method getHandleAtCraftMob;
+    public Method CraftMob_getHandle() {
+        if (getHandleAtCraftMob == null) {
+            try {
+                getHandleAtCraftMob = CraftMob().getMethod("getHandle");
+            } catch (NoSuchMethodException ex) {
+                ex.printStackTrace();
+            }
         }
+        return getHandleAtCraftMob;
+    }
+
+    private Class<?> MobClass;
+    public Class<?> Mob() {
+        if (MobClass == null) {
+            try {
+                MobClass = Class.forName(nmsPackage + ".EntityInsentient");
+            } catch (Exception ignored) {
+                try {
+                    MobClass = Class.forName("net.minecraft.world.entity.EntityInsentient");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return MobClass;
     }
 
     /* UTIL
