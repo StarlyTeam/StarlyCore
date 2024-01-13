@@ -251,8 +251,8 @@ public class NmsOtherUtil {
             try {
                 BukkitEntityClass = Entity().getDeclaredMethod("getBukkitEntity");
                 BukkitEntityClass.setAccessible(true);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(e);
+            } catch (NoSuchMethodException ex) {
+                ex.printStackTrace();
             }
         }
         return BukkitEntityClass;
