@@ -6,24 +6,53 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import kr.starly.core.exception.UnsupportedBukkitVersionException;
 import kr.starly.core.nms.version.Version;
+import kr.starly.core.nms.version.VersionController;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.profile.PlayerProfile;
+import org.bukkit.profile.PlayerTextures;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class PlayerSkullUtil {
 
+    private static final Version version = VersionController.getInstance().getVersion();
     private static final Map<UUID, String> skinTagMap = new HashMap<>();
     private static boolean highVersion;
     private static Server server;
+
+    private static final Map<String, Boolean> highVersionMap = new HashMap<>();
+
+    static {
+        highVersionMap.put("v1_12_R1", false);
+        highVersionMap.put("v1_13_R1", false);
+        highVersionMap.put("v1_13_R2", false);
+        highVersionMap.put("v1_14_R1", false);
+        highVersionMap.put("v1_15_R1", false);
+        highVersionMap.put("v1_16_R1", false);
+        highVersionMap.put("v1_16_R2", false);
+        highVersionMap.put("v1_16_R3", false);
+        highVersionMap.put("v1_17_R1", false);
+        highVersionMap.put("v1_18_R1", false);
+        highVersionMap.put("v1_18_R2", false);
+        highVersionMap.put("v1_19_R1", false);
+        highVersionMap.put("v1_19_R2", false);
+        highVersionMap.put("v1_19_R3", false);
+        highVersionMap.put("v1_20_R1", true);
+        highVersionMap.put("v1_20_R2", true);
+        highVersionMap.put("v1_20_R3", true);
+    }
 
     private PlayerSkullUtil() {}
 
@@ -40,6 +69,31 @@ public class PlayerSkullUtil {
     }
 
     public static ItemStack getCustomSkull(String tempTag) {
+        if (isHighVersion()) {
+            return getCustomSkullUsingPlayerProfile(tempTag);
+        } else {
+           return getCustomSkullUsingGameProfile(tempTag);
+        }
+    }
+
+    private static ItemStack getCustomSkullUsingPlayerProfile(String tempTag) {
+        PlayerProfile profile = Bukkit.createPlayerProfile(UUID.randomUUID());
+        ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta skullMeta = (SkullMeta) head.getItemMeta();
+        PlayerTextures textures = profile.getTextures();
+        try {
+            URL url = new URL("https://textures.minecraft.net/texture/" + tempTag);
+            textures.setSkin(url);
+            profile.setTextures(textures);
+            skullMeta.setOwnerProfile(profile);
+            head.setItemMeta(skullMeta);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return head;
+    }
+
+    private static ItemStack getCustomSkullUsingGameProfile(String tempTag) {
         ItemStack baseItem;
         try {
             baseItem = new ItemStack(Material.valueOf("PLAYER_HEAD"));
@@ -51,7 +105,7 @@ public class PlayerSkullUtil {
 
         String url = "https://textures.minecraft.net/texture/" + tempTag;
         ItemMeta headMeta = baseItem.getItemMeta();
-        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+        GameProfile profile = new GameProfile(UUID.randomUUID(), "");
         byte[] byteArray = String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes();
         byte[] encodedData;
         try {
@@ -121,5 +175,9 @@ public class PlayerSkullUtil {
                 return (byte[]) method.invoke(null, byteArray);
             } catch (Exception ignored1) { throw new UnsupportedBukkitVersionException(server.getVersion()); }
         }
+    }
+
+    private static boolean isHighVersion() {
+        return highVersionMap.get(version.getVersion());
     }
 }
