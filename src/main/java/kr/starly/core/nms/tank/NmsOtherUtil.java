@@ -2400,8 +2400,21 @@ public Field EntityArmorStand_rightLegPose() {
         }
     }
 
+    public void sendPacket(List<Player> targets, Constructor<?> packetConstructor, Object... args) throws InvocationTargetException, InstantiationException, IllegalAccessException {
+        Object packet = args.length == 0 ? packetConstructor.newInstance() : packetConstructor.newInstance(args);
+        for (Player target : targets) {
+            PlayerConnection_sendPacket().invoke(
+                    EntityPlayer_playerConnection().get(CraftPlayer_getHandle().invoke(target)),
+                    packet
+            );
+        }
+    }
+
     public void sendPacket(Player target, Constructor<?> packetConstructor, Object... args) throws InvocationTargetException, InstantiationException, IllegalAccessException {
         Object packet = args.length == 0 ? packetConstructor.newInstance() : packetConstructor.newInstance(args);
-        PlayerConnection_sendPacket().invoke(EntityPlayer_playerConnection().get(CraftPlayer_getHandle().invoke(CraftPlayer().cast(target))), packet);
+        PlayerConnection_sendPacket().invoke(
+                EntityPlayer_playerConnection().get(CraftPlayer_getHandle().invoke(CraftPlayer().cast(target))),
+                packet
+        );
     }
 }
