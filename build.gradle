@@ -1,16 +1,16 @@
 plugins {
-    id 'java'
-    id 'java-library'
-    id 'maven-publish'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id "java"
+    id "java-library"
+    id "maven-publish"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
-group = 'kr.starly.core'
-version = '2.0'
+group = "kr.starly.core"
+version = "2.1"
 
 repositories {
     mavenCentral()
-    maven { url = "https://repo.starly.kr/repository/maven-public/" }
+    maven { url = "https://repo.starly.kr/releases/" }
 }
 
 dependencies {
@@ -18,14 +18,14 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.18.26"
     annotationProcessor "org.projectlombok:lombok:1.18.26"
 
-    api "com.google.guava:guava:31.1-jre"
+    api "com.google.guava:guava:32.0.0-android"
     api "commons-io:commons-io:2.11.0"
     api "com.google.code.gson:gson:2.10.1"
     api "org.reflections:reflections:0.10.2"
-    api "org.json:json:20230618"
+    api "org.json:json:20231013"
 
-    compileOnly "org.spigotmc:spigot-api:R0.1:1.20.1"
-    compileOnly "com.mojang:authlib:4.0.43"
+    compileOnly "org.spigotmc:spigot-api:1.18.1" /* for PlayerProfile */
+    compileOnly "com.mojang:authlib:1.5.25"
 }
 
 tasks.withType(JavaCompile).configureEach {
