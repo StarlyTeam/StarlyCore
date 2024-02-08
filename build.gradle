@@ -18,9 +18,9 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.18.26"
     annotationProcessor "org.projectlombok:lombok:1.18.26"
 
-    api "com.google.guava:guava:32.0.0-android"
-    api "commons-io:commons-io:2.11.0"
-    api "com.google.code.gson:gson:2.10.1"
+    compileOnly "com.google.guava:guava:32.0.0-android"
+    compileOnly "com.google.code.gson:gson:2.10.1"
+    compileOnly "commons-io:commons-io:2.11.0"
     api "org.reflections:reflections:0.10.2"
     api "org.json:json:20231013"
 
@@ -34,6 +34,7 @@ tasks.withType(JavaCompile).configureEach {
 
 shadowJar {
     archiveFileName = "StarlyCore.jar"
+//    destinationDirectory = file("C:\\Users\\korea\\OneDrive\\바탕 화면\\서버 구동기\\1.20.1\\purpur\\plugins")
 }
 
 publishing {
