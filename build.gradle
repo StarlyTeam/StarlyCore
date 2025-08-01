@@ -10,7 +10,8 @@ version = "2.1"
 
 repositories {
     mavenCentral()
-    maven { url = "https://repo.starly.kr/releases/" }
+    maven { url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+    maven { url = "https://repo.papermc.io/repository/maven-public/" }
 }
 
 dependencies {
@@ -18,13 +19,13 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.18.26"
     annotationProcessor "org.projectlombok:lombok:1.18.26"
 
-    compileOnly "com.google.guava:guava:32.0.0-android"
+    compileOnly "com.google.guava:guava:33.4.8-jre"
     compileOnly "com.google.code.gson:gson:2.10.1"
     compileOnly "commons-io:commons-io:2.11.0"
     api "org.reflections:reflections:0.10.2"
     api "org.json:json:20231013"
 
-    compileOnly "org.spigotmc:spigot-api:1.18.1" /* for PlayerProfile */
+    compileOnly "org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT"
     compileOnly "com.mojang:authlib:1.5.25"
 }
 
@@ -33,22 +34,17 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 shadowJar {
-    archiveFileName = "StarlyCore.jar"
-//    destinationDirectory = file("C:\\Users\\korea\\OneDrive\\바탕 화면\\서버 구동기\\1.20.1\\purpur\\plugins")
+    archiveClassifier = ""
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = "kr.starly.core"
-            artifactId = "StarlyCore"
-            version = "${project.version}"
-
-            from components.java
-        }
-    }
     repositories {
         mavenLocal()
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
     }
 }
 
